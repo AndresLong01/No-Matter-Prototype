@@ -5,51 +5,72 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+  public static PlayerController instance;
+
+  private void Awake()
+  {
+    if (instance == null)
+    {
+      instance = this;
+      DontDestroyOnLoad(gameObject);
+    }
+    else
+    {
+      Destroy(gameObject);
+    }
+  }
+
   //Serialized Fields (public elements)
   [SerializeField] float moveSpeed = 5f;
   [SerializeField] float jumpSpeed = 20f;
-  [SerializeField] float shieldBashDistance = 15f;
-  [SerializeField] float bashTimer = 0.3f;
-  [SerializeField] float bashCooldownTimer = 3f;
+  [SerializeField] float classSwapCDTimer= 5f;
+
+  [SerializeField] GameObject[] availableClasses;
+  [SerializeField] GameObject[] activeClasses;
 
   [SerializeField] Collider2D myBodyCollider;
   [SerializeField] Collider2D myFeetCollider;
-  [SerializeField] GameObject shieldObject;
 
   [SerializeField] Animator myAnimator;
 
   //private variables
-  private Rigidbody2D myRigidBody;
+  [HideInInspector]
+  public bool isUsingMovementSkill;
+
+  public Rigidbody2D myRigidBody;
   private Vector2 moveInput;
+  private int selectedClassIndex;
+  private bool canSwapClass;
+  private bool isGrounded;
   private bool canDoubleJump;
-  private bool canBash, isBashing;
 
   private void Start()
   {
     myRigidBody = GetComponent<Rigidbody2D>();
-    canBash = true;
+    //initializing class
+    selectedClassIndex = 0;
+    canSwapClass = true;
   }
 
   private void Update()
   {
     Run();
-    FlipSprite();
+    GroundCheck();
   }
 
   private void OnMove(InputValue value)
   {
     moveInput = value.Get<Vector2>();
+    FlipSprite();
   }
 
   private void OnJump(InputValue value)
   {
-    //checking if the character is touching the ground 
-    bool isGrounded = myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
-
     //jumping and enabling double jump
     if (value.isPressed && isGrounded)
     {
       canDoubleJump = true;
+      //set animator to jump
       Jump();
       return;
     }
@@ -62,22 +83,46 @@ public class PlayerController : MonoBehaviour
     }
   }
 
-  private void OnFire(InputValue value)
+  private void OnSwitchClass(InputValue value)
   {
-    if(!canBash)
+    if (activeClasses.Length == 0)
     {
       return;
     }
 
-    shieldObject.SetActive(true);
-    isBashing = true;
-    
-    if(value.isPressed)
+    if (value.isPressed && canSwapClass)
     {
-      StartCoroutine(ShieldBash(bashTimer));
-      StartCoroutine(ShieldBashCooldown(bashCooldownTimer));
+      canSwapClass = false;
+      activeClasses[selectedClassIndex].SetActive(!activeClasses[selectedClassIndex].activeSelf);
+      
+      if (selectedClassIndex < 1)
+      {
+        selectedClassIndex = 1;
+      }
+      else
+      {
+        selectedClassIndex = 0;
+      }
 
-      myRigidBody.velocity += new Vector2(shieldBashDistance * transform.localScale.x * 1f, 0f);
+      activeClasses[selectedClassIndex].SetActive(!activeClasses[selectedClassIndex].activeSelf);
+      StartCoroutine(ClassSwapCooldown());
+    }
+  }
+
+  //TODO: change this in the future in accordance to multiple skills used
+  private void OnSkillUse(InputValue value)
+  {
+    //maybe object mapping, not sure yet
+    if (value.isPressed)
+    {
+      if(activeClasses[selectedClassIndex].name == "Fighter")
+      {
+        activeClasses[selectedClassIndex].GetComponent<FighterController>().UseSkillOne();
+      }
+      else if (activeClasses[selectedClassIndex].name == "Dwight")
+      {
+        activeClasses[selectedClassIndex].GetComponent<DwightController>().UseSkillOne();
+      }
     }
   }
 
@@ -86,7 +131,7 @@ public class PlayerController : MonoBehaviour
     //Initializing a vector to move towards given the moveInput change set by the OnMove method
     Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, myRigidBody.velocity.y);
     //Using that new vector to change the velocity of the actual rigid body in scene
-    if(!isBashing)
+    if (!isUsingMovementSkill)
     {
       myRigidBody.velocity = playerVelocity;
     }
@@ -113,29 +158,41 @@ public class PlayerController : MonoBehaviour
     myRigidBody.velocity += new Vector2(0f, jumpSpeed);
   }
 
-  private void FlipSprite()
+  private void GroundCheck()
   {
-    bool playerHasHorizontalSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon;
+    //checking if the character is touching the ground 
+    isGrounded = myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
-    if (playerHasHorizontalSpeed)
+    if (!isUsingMovementSkill)
     {
-      transform.localScale = new Vector2(Mathf.Sign(myRigidBody.velocity.x), 1f);
+      myAnimator.SetBool("IsJumping", !isGrounded);
+    }
+    else
+    {
+      myAnimator.SetBool("IsJumping", false);
     }
   }
 
-  IEnumerator ShieldBash(float bashTimer)
+  private void FlipSprite()
   {
-    yield return new WaitForSeconds(bashTimer);
+    bool playerHasHorizontalSpeed = Mathf.Abs(moveInput.x) > Mathf.Epsilon;
 
-    isBashing = false;
-    canBash = false;
-    shieldObject.SetActive(false);
+    if (playerHasHorizontalSpeed)
+    {
+      transform.localScale = new Vector2(Mathf.Sign(moveInput.x), 1f);
+    }
   }
 
-  IEnumerator ShieldBashCooldown(float bashCooldownTimer)
+  public void SetClassPhysics(Collider2D newBodyCollider, Animator newAnimator)
   {
-    yield return new WaitForSeconds(bashCooldownTimer);
+    myBodyCollider = newBodyCollider;
+    myAnimator = newAnimator;
+  }
 
-    canBash = true;
+  IEnumerator ClassSwapCooldown()
+  {
+    yield return new WaitForSeconds(classSwapCDTimer);
+
+    canSwapClass = true;
   }
 }
