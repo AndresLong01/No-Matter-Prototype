@@ -21,26 +21,27 @@ public class PlayerController : MonoBehaviour
   }
 
   //Serialized Fields (public elements)
+  [Header("Player Mechanics")]
   [SerializeField] float moveSpeed = 5f;
   [SerializeField] float jumpSpeed = 20f;
-  [SerializeField] float classSwapCDTimer= 5f;
+  [HideInInspector]
+  public bool isPlayerRecovering;
 
-  [SerializeField] GameObject[] availableClasses;
-  [SerializeField] GameObject[] activeClasses;
-
+  [Header("Physics")]
   [SerializeField] Collider2D myBodyCollider;
   [SerializeField] Collider2D myFeetCollider;
+  public Rigidbody2D myRigidBody;
 
+  [Header("Animation And Effects")]
   [SerializeField] Animator myAnimator;
+  [SerializeField] GameObject doubleJumpEffect;
+  [SerializeField] GameObject dustEffect;
 
   //private variables
   [HideInInspector]
   public bool isUsingMovementSkill;
 
-  public Rigidbody2D myRigidBody;
   private Vector2 moveInput;
-  private int selectedClassIndex;
-  private bool canSwapClass;
   private bool isGrounded;
   private bool canDoubleJump;
 
@@ -48,8 +49,6 @@ public class PlayerController : MonoBehaviour
   {
     myRigidBody = GetComponent<Rigidbody2D>();
     //initializing class
-    selectedClassIndex = 0;
-    canSwapClass = true;
   }
 
   private void Update()
@@ -60,6 +59,11 @@ public class PlayerController : MonoBehaviour
 
   private void OnMove(InputValue value)
   {
+    if(isUsingMovementSkill || isPlayerRecovering)
+    {
+      return;
+    }
+
     moveInput = value.Get<Vector2>();
     FlipSprite();
   }
@@ -78,51 +82,9 @@ public class PlayerController : MonoBehaviour
     //using the doublejump and disabling it so people can't spam
     if (value.isPressed && canDoubleJump)
     {
+      Instantiate(doubleJumpEffect, transform.position - new Vector3(0, 1f, 0), Quaternion.identity);
       canDoubleJump = false;
       Jump();
-    }
-  }
-
-  private void OnSwitchClass(InputValue value)
-  {
-    if (activeClasses.Length == 0)
-    {
-      return;
-    }
-
-    if (value.isPressed && canSwapClass)
-    {
-      canSwapClass = false;
-      activeClasses[selectedClassIndex].SetActive(!activeClasses[selectedClassIndex].activeSelf);
-      
-      if (selectedClassIndex < 1)
-      {
-        selectedClassIndex = 1;
-      }
-      else
-      {
-        selectedClassIndex = 0;
-      }
-
-      activeClasses[selectedClassIndex].SetActive(!activeClasses[selectedClassIndex].activeSelf);
-      StartCoroutine(ClassSwapCooldown());
-    }
-  }
-
-  //TODO: change this in the future in accordance to multiple skills used
-  private void OnSkillUse(InputValue value)
-  {
-    //maybe object mapping, not sure yet
-    if (value.isPressed)
-    {
-      if(activeClasses[selectedClassIndex].name == "Fighter")
-      {
-        activeClasses[selectedClassIndex].GetComponent<FighterController>().UseSkillOne();
-      }
-      else if (activeClasses[selectedClassIndex].name == "Dwight")
-      {
-        activeClasses[selectedClassIndex].GetComponent<DwightController>().UseSkillOne();
-      }
     }
   }
 
@@ -189,10 +151,15 @@ public class PlayerController : MonoBehaviour
     myAnimator = newAnimator;
   }
 
-  IEnumerator ClassSwapCooldown()
-  {
-    yield return new WaitForSeconds(classSwapCDTimer);
+  private void OnCollisionEnter2D(Collision2D other) {
+    if(isGrounded)
+    {
+      return;
+    }
 
-    canSwapClass = true;
+    if(myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+    {
+      Instantiate(dustEffect, transform.position - new Vector3(0f, 1f, 0f), Quaternion.identity);
+    }
   }
 }

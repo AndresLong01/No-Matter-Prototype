@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FighterController : MonoBehaviour
 {
-  private void OnEnable() {
-    if(player != null)
+  private void OnEnable()
+  {
+    if (player != null)
     {
       player.SetClassPhysics(myBodyCollider, fighterAnimator);
     }
@@ -18,29 +19,27 @@ public class FighterController : MonoBehaviour
   [SerializeField] Color bashEffectColor;
 
   [SerializeField] float shieldBashDistance = 15f;
-  [SerializeField] float bashTimer = 0.3f;
-  [SerializeField] float bashCooldownTimer = 3f;
   [SerializeField] float bashEffectLifetime, timeBetweenEffects;
 
   private PlayerController player;
-  private float initialGravity;
-  private bool canBash;
+  private PlayerAbilityTracker abilityTracker;
   private float bashEffectTimer;
 
   private void Start()
   {
     //accessing the player controller instance
     player = PlayerController.instance;
+    abilityTracker = FindObjectOfType<PlayerAbilityTracker>();
     player.SetClassPhysics(myBodyCollider, fighterAnimator);
-    initialGravity = player.myRigidBody.gravityScale;
-    canBash = true;
+    abilityTracker.canBash = true;
   }
 
-  private void Update() {
-    if(player.isUsingMovementSkill)
+  private void Update()
+  {
+    if (player.isUsingMovementSkill && !player.isPlayerRecovering)
     {
       bashEffectTimer -= Time.deltaTime;
-      if(bashEffectTimer <= 0)
+      if (bashEffectTimer <= 0)
       {
         ShowBashEffects();
       }
@@ -49,7 +48,7 @@ public class FighterController : MonoBehaviour
 
   public void UseSkillOne()
   {
-    if (!canBash)
+    if (!abilityTracker.canBash)
     {
       return;
     }
@@ -57,14 +56,16 @@ public class FighterController : MonoBehaviour
     shieldObject.SetActive(true);
     player.isUsingMovementSkill = true;
 
-    //TODO: Maybe figure a way to QUEUE coroutines rather than instantiating 2 seperate routines for 1 skill
+    //TODO: Cooldown Issue
     //Possible Solutions to cooldown problem: 
     //Run Coroutine on seperate Ability Tracker Monobehaviour, possibly does not update the variable of a disabled object
     //Run the timer on Update, game redesign in order because Update method paused when object is inactive
     //Run cooldown on Player Object and reset skill actives on swap
 
-    StartCoroutine(ShieldBash(bashTimer));
-    StartCoroutine(ShieldBashCooldown(bashCooldownTimer));
+    //REMINDER: Create a new empty on the scene under Player as a parent
+    //Create a Cooldown Manager script
+    //Create cooldown IEnumerators here with seperate cooldown timer checks and check on class scripts if able to use skill
+    abilityTracker.useShieldBash();
 
     //resetting momentum and bashing
     player.myRigidBody.velocity = new Vector2(0f, 0f);
@@ -75,33 +76,13 @@ public class FighterController : MonoBehaviour
 
   private void ShowBashEffects()
   {
-    Debug.Log(player.transform.position);
     SpriteRenderer image = Instantiate(bashEffect, player.transform.position, player.transform.rotation);
     image.sprite = mySpriteRenderer.sprite;
-    image.transform.localScale = transform.localScale;
+    image.transform.localScale = player.transform.localScale;
     image.color = bashEffectColor;
 
     Destroy(image.gameObject, bashEffectLifetime);
 
     bashEffectTimer = timeBetweenEffects;
-  }
-
-  IEnumerator ShieldBash(float bashTimer)
-  {
-
-    yield return new WaitForSeconds(bashTimer);
-
-    player.isUsingMovementSkill = false;
-    canBash = false;
-    shieldObject.SetActive(false);
-    player.myRigidBody.gravityScale = initialGravity;
-  }
-
-  IEnumerator ShieldBashCooldown(float bashCooldownTimer)
-  {
-    yield return new WaitForSeconds(bashCooldownTimer);
-
-    Debug.Log("Off cooldown");
-    canBash = true;
   }
 }

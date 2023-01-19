@@ -171,9 +171,12 @@ MonoBehaviour:
   myBodyCollider: {fileID: 3273498847107763727}
   shieldObject: {fileID: 3273498848056202241}
   fighterAnimator: {fileID: 3273498847107763721}
+  mySpriteRenderer: {fileID: 3273498847107763720}
+  bashEffect: {fileID: 7829885149290896948, guid: 3f6400f7352efaa49b8eeb64d2f16926, type: 3}
+  bashEffectColor: {r: 0.4745098, g: 0.4745098, b: 0.4745098, a: 0.6}
   shieldBashDistance: 15
-  bashTimer: 0.3
-  bashCooldownTimer: 3
+  bashEffectLifetime: 0.5
+  timeBetweenEffects: 0.033333335
 --- !u!1 &3273498848056202241
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +188,7 @@ GameObject:
   - component: {fileID: 3273498848056202240}
   - component: {fileID: 3273498848056202247}
   - component: {fileID: 3273498848056202246}
+  - component: {fileID: 2128645674}
   m_Layer: 14
   m_Name: Shield
   m_TagString: Untagged
@@ -275,3 +279,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!114 &2128645674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3273498848056202241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf2d7733530d554b8f175f799014374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoveryPeriod: 0.2
