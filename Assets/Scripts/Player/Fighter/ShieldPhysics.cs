@@ -16,10 +16,8 @@ public class ShieldPhysics : MonoBehaviour
   {
     PlayerAbilityTracker.instance.stopShieldBashEarly();
 
-    float currentPlayerVelocityVector = Mathf.Sign(player.myRigidBody.velocity.x);
-    player.myRigidBody.velocity = new Vector2(0f, 0f);
-    player.myRigidBody.velocity += new Vector2(currentPlayerVelocityVector * -8f, 10f);
+    player.GetComponent<PlayerHealthController>().PlayerKnockback(-8f, 10f);
 
-    PlayerAbilityTracker.instance.StartRecovery(.5f);
+    PlayerAbilityTracker.instance.StartRecovery(recoveryPeriod);
   }
 }

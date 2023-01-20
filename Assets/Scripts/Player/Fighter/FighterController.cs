@@ -56,15 +56,6 @@ public class FighterController : MonoBehaviour
     shieldObject.SetActive(true);
     player.isUsingMovementSkill = true;
 
-    //TODO: Cooldown Issue
-    //Possible Solutions to cooldown problem: 
-    //Run Coroutine on seperate Ability Tracker Monobehaviour, possibly does not update the variable of a disabled object
-    //Run the timer on Update, game redesign in order because Update method paused when object is inactive
-    //Run cooldown on Player Object and reset skill actives on swap
-
-    //REMINDER: Create a new empty on the scene under Player as a parent
-    //Create a Cooldown Manager script
-    //Create cooldown IEnumerators here with seperate cooldown timer checks and check on class scripts if able to use skill
     abilityTracker.useShieldBash();
 
     //resetting momentum and bashing

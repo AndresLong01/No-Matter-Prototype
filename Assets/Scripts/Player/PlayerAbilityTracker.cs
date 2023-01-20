@@ -46,6 +46,11 @@ public class PlayerAbilityTracker : MonoBehaviour
     canSwapClass = true;
   }
 
+  public GameObject GetCurrentClass()
+  {
+    return activeClasses[selectedClassIndex];
+  }
+
   //TODO: change this in the future in accordance to multiple skills used
   private void OnSkillUse(InputValue value)
   {
@@ -124,17 +129,22 @@ public class PlayerAbilityTracker : MonoBehaviour
   {
     StopCoroutine(shieldBashInstance);
     canBash = false;
+    player.isUsingMovementSkill = false;
     shieldObject.SetActive(false);
     player.myRigidBody.gravityScale = initialGravity;
   }
 
   IEnumerator ShieldBash(float bashActiveTimer)
   {
+    //Gives player invincibility for bash
+    player.isPlayerRecovering = true;
     canBash = false;
 
     yield return new WaitForSeconds(bashActiveTimer);
+
     player.isUsingMovementSkill = false;
     shieldObject.SetActive(false);
+    // player.myRigidBody.velocity = new Vector2(0f, 0f);
     player.myRigidBody.gravityScale = initialGravity;
   }
 

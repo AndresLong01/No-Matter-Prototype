@@ -55,21 +55,21 @@ public class PlayerController : MonoBehaviour
   {
     Run();
     GroundCheck();
+    FlipSprite();
   }
 
   private void OnMove(InputValue value)
+  {
+    moveInput = value.Get<Vector2>(); 
+  }
+
+  private void OnJump(InputValue value)
   {
     if(isUsingMovementSkill || isPlayerRecovering)
     {
       return;
     }
 
-    moveInput = value.Get<Vector2>();
-    FlipSprite();
-  }
-
-  private void OnJump(InputValue value)
-  {
     //jumping and enabling double jump
     if (value.isPressed && isGrounded)
     {
@@ -90,13 +90,15 @@ public class PlayerController : MonoBehaviour
 
   private void Run()
   {
+    if(isUsingMovementSkill || isPlayerRecovering)
+    {
+      return;
+    }
+
     //Initializing a vector to move towards given the moveInput change set by the OnMove method
     Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, myRigidBody.velocity.y);
     //Using that new vector to change the velocity of the actual rigid body in scene
-    if (!isUsingMovementSkill)
-    {
-      myRigidBody.velocity = playerVelocity;
-    }
+    myRigidBody.velocity = playerVelocity;
 
     //checking if there is momentum active
     bool playerHasHorizontalSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon;
@@ -137,6 +139,11 @@ public class PlayerController : MonoBehaviour
 
   private void FlipSprite()
   {
+    if(isUsingMovementSkill || isPlayerRecovering)
+    {
+      return;
+    }
+
     bool playerHasHorizontalSpeed = Mathf.Abs(moveInput.x) > Mathf.Epsilon;
 
     if (playerHasHorizontalSpeed)

@@ -1,18 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+//TODO: for pause menu later
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  public static UIController instance;
 
-    // Update is called once per frame
-    void Update()
+  private void Awake()
+  {
+    if (instance == null)
     {
-        
+      instance = this;
+      DontDestroyOnLoad(gameObject);
     }
+    else
+    {
+      Destroy(gameObject);
+    }
+  }
+
+  [Header("Resource Bars")]
+  public Slider healthSlider;
+
+  void Start()
+  {
+
+  }
+
+  void Update()
+  {
+
+  }
+
+  public void UpdateHealth(int currentHealth, int maxHealth)
+  {
+    healthSlider.maxValue = maxHealth;
+    healthSlider.value = currentHealth;
+  }
 }
