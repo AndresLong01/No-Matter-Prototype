@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DamagePlayer : MonoBehaviour
 {
-  PlayerController player;
+  private PlayerController player;
+
   [SerializeField] int damageAmount = 5;
   [SerializeField] float xKnockbackAmount = 12f;
 
