@@ -18,6 +18,7 @@ public class FighterController : MonoBehaviour
   [SerializeField] SpriteRenderer mySpriteRenderer, bashEffect;
   [SerializeField] Color bashEffectColor;
 
+  [SerializeField] float attackRecoveryTime = 1f;
   [SerializeField] float shieldBashDistance = 15f;
   [SerializeField] float bashEffectLifetime, timeBetweenEffects;
 
@@ -36,7 +37,7 @@ public class FighterController : MonoBehaviour
 
   private void Update()
   {
-    if (player.isUsingMovementSkill)
+    if (player.isUsingMovementAbility)
     {
       bashEffectTimer -= Time.deltaTime;
       if (bashEffectTimer <= 0)
@@ -46,10 +47,16 @@ public class FighterController : MonoBehaviour
     }
   }
 
-  public void UseSkillOne()
+  public void UseBasicAttack()
+  {
+    player.myAnimator.SetTrigger("Attack");
+    FindObjectOfType<PlayerAttackController>().PlayerAttackRecovery(attackRecoveryTime);
+  }
+
+  public void UseAbilityOne()
   {
     shieldObject.SetActive(true);
-    player.isUsingMovementSkill = true;
+    player.isUsingMovementAbility = true;
 
     abilityTracker.useShieldBash();
 

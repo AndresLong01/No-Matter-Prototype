@@ -22,7 +22,7 @@ public class DwightController : MonoBehaviour
     player.SetClassPhysics(myBodyCollider, dwightAnimator);
   }
 
-  public void UseSkillOne()
+  public void UseAbilityOne()
   {
     Debug.Log("I am Dwight");
   }

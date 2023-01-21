@@ -25,6 +25,7 @@ public class PlayerAbilityTracker : MonoBehaviour
   private UIController UI;
   private float initialGravity;
 
+  [Header("Class Swap Section")]
   [SerializeField] GameObject[] availableClasses;
   [SerializeField] GameObject[] activeClasses;
   [SerializeField] float classSwapCDTimer = 5f;
@@ -52,45 +53,52 @@ public class PlayerAbilityTracker : MonoBehaviour
     initialGravity = player.myRigidBody.gravityScale;
     selectedClassIndex = 0;
     canSwapClass = true;
-  }
 
-  public GameObject GetCurrentClass()
-  {
-    return activeClasses[selectedClassIndex];
+    //little funny easter egg
+    canScreamDwight = true;
   }
+  // ------------------------------------------------------------------- ABILITY USE ---------------------------------------------------------------------------
 
-  //TODO: change this in the future in accordance to multiple skills used
-  private void OnSkillUse(InputValue value)
+  //TODO: change this in the future in accordance to multiple abilitys used
+  private void OnAbilityUse(InputValue value)
   {
     //maybe object mapping, not sure yet
     if (value.isPressed)
     {
       if (GetCurrentClass().name == "Fighter" && canBash)
       {
-        GetCurrentClass().GetComponent<FighterController>().UseSkillOne();
+        GetCurrentClass().GetComponent<FighterController>().UseAbilityOne();
       }
       else if (GetCurrentClass().name == "Dwight" && canScreamDwight)
       {
-        GetCurrentClass().GetComponent<DwightController>().UseSkillOne();
+        GetCurrentClass().GetComponent<DwightController>().UseAbilityOne();
         // for testing purposes
         StartCoroutine(TestDwight(dwightCooldownTimer));
       }
     }
   }
 
+  // ------------------------------------------------------------------- RECOVERY FRAMES ---------------------------------------------------------------------------
+
   public void StartRecovery(float recoveryTime)
   {
     StartCoroutine(RecoveryPeriod(recoveryTime));
   }
 
-  //Recovery period if needed for any skill
+  //Recovery period if needed for any ability
   IEnumerator RecoveryPeriod(float recoveryTime)
   {
     player.isPlayerRecovering = true;
     yield return new WaitForSeconds(recoveryTime);
 
-    player.isUsingMovementSkill = false;
+    player.isUsingMovementAbility = false;
     player.isPlayerRecovering = false;
+  }
+
+  // ----------------------------------------------------------------- SWITCH CLASS METHODS ---------------------------------------------------------------------------
+  public GameObject GetCurrentClass()
+  {
+    return activeClasses[selectedClassIndex];
   }
 
   private void OnSwitchClass(InputValue value)
@@ -102,7 +110,7 @@ public class PlayerAbilityTracker : MonoBehaviour
 
     if (value.isPressed && canSwapClass)
     {
-      player.isUsingMovementSkill = false;
+      player.isUsingMovementAbility = false;
       canSwapClass = false;
       activeClasses[selectedClassIndex].SetActive(!activeClasses[selectedClassIndex].activeSelf);
 
@@ -129,7 +137,7 @@ public class PlayerAbilityTracker : MonoBehaviour
     canSwapClass = true;
   }
 
-  //using bash from Fighter Controller
+  // ----------------------------------------------------------------- FIGHTER METHODS ---------------------------------------------------------------------------
   public void useShieldBash()
   {
     shieldBashInstance = StartCoroutine(ShieldBash(bashActiveTimer));
@@ -141,7 +149,7 @@ public class PlayerAbilityTracker : MonoBehaviour
   {
     StopCoroutine(shieldBashInstance);
     canBash = false;
-    player.isUsingMovementSkill = false;
+    player.isUsingMovementAbility = false;
     shieldObject.SetActive(false);
     player.myRigidBody.gravityScale = initialGravity;
   }
@@ -154,7 +162,7 @@ public class PlayerAbilityTracker : MonoBehaviour
 
     yield return new WaitForSeconds(bashActiveTimer);
 
-    player.isUsingMovementSkill = false;
+    player.isUsingMovementAbility = false;
     player.isPlayerRecovering = false;
     shieldObject.SetActive(false);
     // player.myRigidBody.velocity = new Vector2(0f, 0f);
@@ -163,15 +171,16 @@ public class PlayerAbilityTracker : MonoBehaviour
 
   IEnumerator ShieldBashCooldown(float bashCooldownTimer)
   {
-    UI.timerController.SetSkillOneTimer(selectedClassIndex, bashCooldownTimer);
+    UI.timerController.SetAbilityOneTimer(selectedClassIndex, bashCooldownTimer);
     yield return new WaitForSeconds(bashCooldownTimer);
 
     canBash = true;
   }
 
+  // ----------------------------------------------------------------- DWIGHT METHODS ---------------------------------------------------------------------------
   IEnumerator TestDwight(float dwightCooldownTimer)
   {
-    UI.timerController.SetSkillOneTimer(selectedClassIndex, dwightCooldownTimer);
+    UI.timerController.SetAbilityOneTimer(selectedClassIndex, dwightCooldownTimer);
     canScreamDwight = false;
 
     yield return new WaitForSeconds(dwightCooldownTimer);

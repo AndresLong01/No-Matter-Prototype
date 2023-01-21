@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2333677674082699318}
   - component: {fileID: 2333677674082699317}
   - component: {fileID: 120127076038774682}
+  - component: {fileID: 548412981}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -102,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf515c6493618e48be2d04a15ff780c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 6
   jumpSpeed: 15
   isPlayerRecovering: 0
   myBodyCollider: {fileID: 0}
@@ -111,7 +112,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   doubleJumpEffect: {fileID: 4168101528010088934, guid: 0c3142937fa32434ea3ba0caa787378a, type: 3}
   dustEffect: {fileID: 6118246244306223439, guid: 3b38c22ee726fcb49a7e804008998c75, type: 3}
-  isUsingMovementSkill: 0
+  isUsingMovementAbility: 0
 --- !u!114 &2333677674082699317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,11 +132,15 @@ MonoBehaviour:
   - {fileID: 839577862295149658}
   - {fileID: 4409275593144324076}
   classSwapCDTimer: 5
+  selectedClassIndex: 0
   FighterUnlocked: 1
   canBash: 0
   shieldObject: {fileID: 839577863857238261}
   bashActiveTimer: 0.3
   bashCooldownTimer: 3
+  DwightUnlocked: 0
+  canScreamDwight: 0
+  dwightCooldownTimer: 25
 --- !u!114 &120127076038774682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +160,18 @@ MonoBehaviour:
   playerSprites:
   - {fileID: 839577862673918716}
   - {fileID: 4409275592986163530}
+--- !u!114 &548412981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2333677674082699304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1bec15de34d314587203d015cd856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2558982758160846083
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +312,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 2333677674082699305}
     m_Modifications:
+    - target: {fileID: 3153686204430928480, guid: 86489d745b7ca8649985f555d79db599, type: 3}
+      propertyPath: attackRecoveryTime
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3273498847469762733, guid: 86489d745b7ca8649985f555d79db599, type: 3}
       propertyPath: m_RootOrder
       value: -1

@@ -33,13 +33,13 @@ public class PlayerController : MonoBehaviour
   public Rigidbody2D myRigidBody;
 
   [Header("Animation And Effects")]
-  [SerializeField] Animator myAnimator;
+  public Animator myAnimator;
   [SerializeField] GameObject doubleJumpEffect;
   [SerializeField] GameObject dustEffect;
 
   //private variables
   [HideInInspector]
-  public bool isUsingMovementSkill;
+  public bool isUsingMovementAbility;
 
   private Vector2 moveInput;
   private bool isGrounded;
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
   private void OnJump(InputValue value)
   {
-    if(isUsingMovementSkill || isPlayerRecovering)
+    if(isUsingMovementAbility || isPlayerRecovering)
     {
       return;
     }
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
   private void Run()
   {
-    if(isUsingMovementSkill || isPlayerRecovering)
+    if(isUsingMovementAbility || isPlayerRecovering)
     {
       return;
     }
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
     //checking if the character is touching the ground 
     isGrounded = myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
-    if (!isUsingMovementSkill)
+    if (!isUsingMovementAbility)
     {
       myAnimator.SetBool("IsJumping", !isGrounded);
     }
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
 
   private void FlipSprite()
   {
-    if(isUsingMovementSkill || isPlayerRecovering)
+    if(isUsingMovementAbility || isPlayerRecovering)
     {
       return;
     }

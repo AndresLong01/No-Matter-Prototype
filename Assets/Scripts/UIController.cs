@@ -30,10 +30,10 @@ public class UIController : MonoBehaviour
   [SerializeField] Image classSwapTimer;
 
   [Header("Class LoadoutTimers")]
-  [SerializeField] Image skillOneA;
-  [SerializeField] Image skillTwoA;
-  [SerializeField] Image skillOneB;
-  [SerializeField] Image skillTwoB;
+  [SerializeField] Image abilityOneA;
+  [SerializeField] Image abilityTwoA;
+  [SerializeField] Image abilityOneB;
+  [SerializeField] Image abilityTwoB;
 
   [Header("Class One Game Objects")]
   [SerializeField] GameObject[] classOneGameObjects;
@@ -51,12 +51,12 @@ public class UIController : MonoBehaviour
     classSwapTimer.fillAmount = timerController.fillFractionClassSwap;
 
     //class index 0
-    skillOneA.fillAmount = timerController.fillFractionSkillOneA;
-    skillTwoA.fillAmount = timerController.fillFractionSkillTwoA;
+    abilityOneA.fillAmount = timerController.fillFractionAbilityOneA;
+    abilityTwoA.fillAmount = timerController.fillFractionAbilityTwoA;
 
     //class index 1
-    skillOneB.fillAmount = timerController.fillFractionSkillOneB;
-    skillTwoB.fillAmount = timerController.fillFractionSkillTwoB;
+    abilityOneB.fillAmount = timerController.fillFractionAbilityOneB;
+    abilityTwoB.fillAmount = timerController.fillFractionAbilityTwoB;
   }
 
   public void UpdateHealth(int currentHealth, int maxHealth)
@@ -91,6 +91,8 @@ public class UIController : MonoBehaviour
 
     }
   }
+
+
 }
 
 

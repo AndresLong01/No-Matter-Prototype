@@ -6,19 +6,19 @@ public class Timer : MonoBehaviour
 {
   // fill fractions calculated for the Cooldowns
   public float fillFractionClassSwap;
-  public float fillFractionSkillOneA, fillFractionSkillOneB;
-  public float fillFractionSkillTwoA, fillFractionSkillTwoB;
+  public float fillFractionAbilityOneA, fillFractionAbilityOneB;
+  public float fillFractionAbilityTwoA, fillFractionAbilityTwoB;
 
   // class Swap cooldown Timer
   private float maxTimerValueClassSwap, currentTimerValueClassSwap;
 
-  //Skill one, dependent on current selected class
-  private float skillOneAMaxTimer, skillOneACurrentTimer;
-  private float skillOneBMaxTimer, skillOneBCurrentTimer;
+  //Ability one, dependent on current selected class
+  private float abilityOneAMaxTimer, abilityOneACurrentTimer;
+  private float abilityOneBMaxTimer, abilityOneBCurrentTimer;
 
-  //Skill two, dependent on current selected class
-  private float skillTwoAMaxTimer, skillTwoACurrentTimer;
-  private float skillTwoBMaxTimer, skillTwoBCurrentTimer;
+  //Ability two, dependent on current selected class
+  private float abilityTwoAMaxTimer, abilityTwoACurrentTimer;
+  private float abilityTwoBMaxTimer, abilityTwoBCurrentTimer;
 
   private void Update()
   {
@@ -31,37 +31,37 @@ public class Timer : MonoBehaviour
     currentTimerValueClassSwap = timeToSet;
   }
 
-  public void SetSkillOneTimer(int selectedClassIndex, float timeToSet)
+  public void SetAbilityOneTimer(int selectedClassIndex, float timeToSet)
   {
     //class index 0
     if (selectedClassIndex == 0)
     {
-      skillOneAMaxTimer = timeToSet;
-      skillOneACurrentTimer = timeToSet;
+      abilityOneAMaxTimer = timeToSet;
+      abilityOneACurrentTimer = timeToSet;
     }
 
     //class index 1
     if (selectedClassIndex == 1)
     {
-      skillOneBMaxTimer = timeToSet;
-      skillOneBCurrentTimer = timeToSet;
+      abilityOneBMaxTimer = timeToSet;
+      abilityOneBCurrentTimer = timeToSet;
     }
   }
 
-  public void SetSkillTwoTimer(int selectedClassIndex, float timeToSet)
+  public void SetAbilityTwoTimer(int selectedClassIndex, float timeToSet)
   {
     //class index 0
     if (selectedClassIndex == 0)
     {
-      skillTwoAMaxTimer = timeToSet;
-      skillTwoACurrentTimer = timeToSet;
+      abilityTwoAMaxTimer = timeToSet;
+      abilityTwoACurrentTimer = timeToSet;
     }
 
     //class index 1
     if (selectedClassIndex == 1)
     {
-      skillTwoBMaxTimer = timeToSet;
-      skillTwoBCurrentTimer = timeToSet;
+      abilityTwoBMaxTimer = timeToSet;
+      abilityTwoBCurrentTimer = timeToSet;
     }
   }
 
@@ -74,22 +74,22 @@ public class Timer : MonoBehaviour
     }
 
     //might need revision
-    if (skillOneACurrentTimer > 0 || skillTwoACurrentTimer > 0)
+    if (abilityOneACurrentTimer > 0 || abilityTwoACurrentTimer > 0)
     {
-      skillOneACurrentTimer -= Time.deltaTime;
-      fillFractionSkillOneA = skillOneACurrentTimer / skillOneAMaxTimer;
+      abilityOneACurrentTimer -= Time.deltaTime;
+      fillFractionAbilityOneA = abilityOneACurrentTimer / abilityOneAMaxTimer;
 
-      skillTwoACurrentTimer -= Time.deltaTime;
-      fillFractionSkillTwoA = skillTwoACurrentTimer / skillTwoAMaxTimer;
+      abilityTwoACurrentTimer -= Time.deltaTime;
+      fillFractionAbilityTwoA = abilityTwoACurrentTimer / abilityTwoAMaxTimer;
     }
 
-    if (skillOneBCurrentTimer > 0 || skillTwoBCurrentTimer > 0)
+    if (abilityOneBCurrentTimer > 0 || abilityTwoBCurrentTimer > 0)
     {
-      skillOneBCurrentTimer -= Time.deltaTime;
-      fillFractionSkillOneB= skillOneBCurrentTimer / skillOneBMaxTimer;
+      abilityOneBCurrentTimer -= Time.deltaTime;
+      fillFractionAbilityOneB= abilityOneBCurrentTimer / abilityOneBMaxTimer;
 
-      skillTwoBCurrentTimer -= Time.deltaTime;
-      fillFractionSkillTwoB= skillTwoBCurrentTimer / skillTwoBMaxTimer;
+      abilityTwoBCurrentTimer -= Time.deltaTime;
+      fillFractionAbilityTwoB= abilityTwoBCurrentTimer / abilityTwoBMaxTimer;
     }
   }
 
@@ -97,9 +97,9 @@ public class Timer : MonoBehaviour
   {
     // resets all timers
     currentTimerValueClassSwap = 0;
-    skillOneACurrentTimer = 0;
-    skillOneBCurrentTimer = 0;
-    skillTwoACurrentTimer = 0;
-    skillTwoBCurrentTimer = 0;
+    abilityOneACurrentTimer = 0;
+    abilityOneBCurrentTimer = 0;
+    abilityTwoACurrentTimer = 0;
+    abilityTwoBCurrentTimer = 0;
   }
 }
