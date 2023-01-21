@@ -1334,10 +1334,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillFractionClassSwap: 0
-  fillFractionSkillOneA: 0
-  fillFractionSkillOneB: 0
-  fillFractionSkillTwoA: 0
-  fillFractionSkillTwoB: 0
+  fillFractionAbilityOneA: 0
+  fillFractionAbilityOneB: 0
+  fillFractionAbilityTwoA: 0
+  fillFractionAbilityTwoB: 0
 --- !u!4 &569218656
 Transform:
   m_ObjectHideFlags: 0
@@ -1915,6 +1915,23 @@ RectTransform:
   m_AnchoredPosition: {x: -1.9000006, y: 0.050001144}
   m_SizeDelta: {x: -15.800001, y: -11.700001}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1146839158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4409275592986163529, guid: 5da8f0c937d474340a9f1bacb134d540, type: 3}
+  m_PrefabInstance: {fileID: 2333677673534297606}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1146839168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146839158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2609487b9cf254b5ea41f833e38c0754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1169646306
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,10 +2056,10 @@ MonoBehaviour:
   healthSlider: {fileID: 2140978180}
   timerController: {fileID: 0}
   classSwapTimer: {fileID: 2061348134}
-  skillOneA: {fileID: 1424331309}
-  skillTwoA: {fileID: 1791451027}
-  skillOneB: {fileID: 1868121309}
-  skillTwoB: {fileID: 1626595430}
+  abilityOneA: {fileID: 1791451027}
+  abilityTwoA: {fileID: 1424331309}
+  abilityOneB: {fileID: 1868121309}
+  abilityTwoB: {fileID: 1626595430}
   classOneGameObjects:
   - {fileID: 2003016699}
   - {fileID: 1424331306}
