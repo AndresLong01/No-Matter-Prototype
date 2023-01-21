@@ -7,7 +7,8 @@ public class PlayerAbilityTracker : MonoBehaviour
 {
   public static PlayerAbilityTracker instance;
 
-  private void Awake() {
+  private void Awake()
+  {
     if (instance == null)
     {
       instance = this;
@@ -20,27 +21,34 @@ public class PlayerAbilityTracker : MonoBehaviour
   }
 
   //Instantiating the player controller
-  PlayerController player;
+  private PlayerController player;
+  private UIController UI;
   private float initialGravity;
 
   [SerializeField] GameObject[] availableClasses;
   [SerializeField] GameObject[] activeClasses;
-  [SerializeField] float classSwapCDTimer= 5f;
-  private int selectedClassIndex;
+  [SerializeField] float classSwapCDTimer = 5f;
+  public int selectedClassIndex;
   private bool canSwapClass;
 
+  //Can probably move some of these back to fighter
   [Header("Fighter Section")]
   public bool FighterUnlocked, canBash;
   [SerializeField] GameObject shieldObject;
   [SerializeField] float bashActiveTimer = 0.3f;
   [SerializeField] float bashCooldownTimer = 3f;
 
-  private Coroutine shieldBashInstance, shieldBashCooldown;
+  private Coroutine shieldBashInstance;
+
+  [Header("Dwight Section")]
+  public bool DwightUnlocked, canScreamDwight;
+  [SerializeField] float dwightCooldownTimer = 25f;
 
   // Start is called before the first frame update
   void Start()
   {
     player = PlayerController.instance;
+    UI = UIController.instance;
     initialGravity = player.myRigidBody.gravityScale;
     selectedClassIndex = 0;
     canSwapClass = true;
@@ -57,13 +65,15 @@ public class PlayerAbilityTracker : MonoBehaviour
     //maybe object mapping, not sure yet
     if (value.isPressed)
     {
-      if(activeClasses[selectedClassIndex].name == "Fighter")
+      if (GetCurrentClass().name == "Fighter" && canBash)
       {
-        activeClasses[selectedClassIndex].GetComponent<FighterController>().UseSkillOne();
+        GetCurrentClass().GetComponent<FighterController>().UseSkillOne();
       }
-      else if (activeClasses[selectedClassIndex].name == "Dwight")
+      else if (GetCurrentClass().name == "Dwight" && canScreamDwight)
       {
-        activeClasses[selectedClassIndex].GetComponent<DwightController>().UseSkillOne();
+        GetCurrentClass().GetComponent<DwightController>().UseSkillOne();
+        // for testing purposes
+        StartCoroutine(TestDwight(dwightCooldownTimer));
       }
     }
   }
@@ -95,7 +105,7 @@ public class PlayerAbilityTracker : MonoBehaviour
       player.isUsingMovementSkill = false;
       canSwapClass = false;
       activeClasses[selectedClassIndex].SetActive(!activeClasses[selectedClassIndex].activeSelf);
-      
+
       if (selectedClassIndex < 1)
       {
         selectedClassIndex = 1;
@@ -106,6 +116,8 @@ public class PlayerAbilityTracker : MonoBehaviour
       }
 
       activeClasses[selectedClassIndex].SetActive(!activeClasses[selectedClassIndex].activeSelf);
+      UI.timerController.SetClassTimer(classSwapCDTimer);
+      UI.SwapActiveUI(selectedClassIndex);
       StartCoroutine(ClassSwapCooldown());
     }
   }
@@ -151,10 +163,18 @@ public class PlayerAbilityTracker : MonoBehaviour
 
   IEnumerator ShieldBashCooldown(float bashCooldownTimer)
   {
+    UI.timerController.SetSkillOneTimer(selectedClassIndex, bashCooldownTimer);
     yield return new WaitForSeconds(bashCooldownTimer);
 
     canBash = true;
   }
 
+  IEnumerator TestDwight(float dwightCooldownTimer)
+  {
+    UI.timerController.SetSkillOneTimer(selectedClassIndex, dwightCooldownTimer);
+    canScreamDwight = false;
 
+    yield return new WaitForSeconds(dwightCooldownTimer);
+    canScreamDwight = true;
+  }
 }

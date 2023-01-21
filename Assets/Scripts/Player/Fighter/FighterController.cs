@@ -48,11 +48,6 @@ public class FighterController : MonoBehaviour
 
   public void UseSkillOne()
   {
-    if (!abilityTracker.canBash)
-    {
-      return;
-    }
-
     shieldObject.SetActive(true);
     player.isUsingMovementSkill = true;
 
