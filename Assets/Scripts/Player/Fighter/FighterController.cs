@@ -36,7 +36,7 @@ public class FighterController : MonoBehaviour
 
   private void Update()
   {
-    if (player.isUsingMovementSkill && !player.isPlayerRecovering)
+    if (player.isUsingMovementSkill)
     {
       bashEffectTimer -= Time.deltaTime;
       if (bashEffectTimer <= 0)

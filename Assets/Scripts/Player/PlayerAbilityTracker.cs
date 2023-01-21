@@ -143,6 +143,7 @@ public class PlayerAbilityTracker : MonoBehaviour
     yield return new WaitForSeconds(bashActiveTimer);
 
     player.isUsingMovementSkill = false;
+    player.isPlayerRecovering = false;
     shieldObject.SetActive(false);
     // player.myRigidBody.velocity = new Vector2(0f, 0f);
     player.myRigidBody.gravityScale = initialGravity;
@@ -152,7 +153,6 @@ public class PlayerAbilityTracker : MonoBehaviour
   {
     yield return new WaitForSeconds(bashCooldownTimer);
 
-    Debug.Log("Off cooldown");
     canBash = true;
   }
 

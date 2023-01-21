@@ -15,8 +15,6 @@ public class DamagePlayer : MonoBehaviour
 
   private void OnCollisionEnter2D(Collision2D other)
   {
-    Debug.Log(other.gameObject);
-    Debug.Log(other.gameObject.tag);
     if (other.gameObject.tag == "Player")
     {
       DealDamage();
@@ -25,10 +23,6 @@ public class DamagePlayer : MonoBehaviour
 
   private void OnTriggerEnter2D(Collider2D other)
   {
-    //BUG: On the player using Bash, damage still gets read
-    //Considerations, making player invincible on movement skills, bash lasts .3s while other movement options last much less therefore it won't make too much a difference
-    Debug.Log(other.gameObject);
-    Debug.Log(other.gameObject.tag);
     if (other.gameObject.tag == "Player")
     {
       DealDamage();
