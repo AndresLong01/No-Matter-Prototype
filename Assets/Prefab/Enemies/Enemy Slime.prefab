@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2144196947}
   m_Layer: 10
   m_Name: Enemy Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,6 +69,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb9ad4b9c5953c4b9a54209bb9f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalHealth: 15
+  deathEffect: {fileID: 6702688045390008998, guid: 41c3fd6250c2bc74e9e852aa72c24783, type: 3}
 --- !u!114 &2144196946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myEdgeCollider: {fileID: 1525530851}
   moveSpeed: 2
+  reactionToHitTimer: 0.5
 --- !u!1 &6690405336869850600
 GameObject:
   m_ObjectHideFlags: 0

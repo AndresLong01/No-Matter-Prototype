@@ -312,6 +312,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 2333677674082699305}
     m_Modifications:
+    - target: {fileID: 2128645674, guid: 86489d745b7ca8649985f555d79db599, type: 3}
+      propertyPath: shieldBashKnockbackX
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128645674, guid: 86489d745b7ca8649985f555d79db599, type: 3}
+      propertyPath: shieldBashKnockbackY
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3153686204430928480, guid: 86489d745b7ca8649985f555d79db599, type: 3}
       propertyPath: attackRecoveryTime
       value: 0.4

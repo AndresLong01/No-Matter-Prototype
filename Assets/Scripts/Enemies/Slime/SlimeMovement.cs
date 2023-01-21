@@ -8,16 +8,31 @@ public class SlimeMovement : MonoBehaviour
   [SerializeField] BoxCollider2D myEdgeCollider;
 
   [SerializeField] float moveSpeed = 1f;
+  
+  private bool isHit;
+  [SerializeField] float reactionToHitTimer;
 
   void Start()
   {
     myRigidBody = GetComponent<Rigidbody2D>();
-    myEdgeCollider = GetComponent<BoxCollider2D>();
   }
 
   void Update()
   {
-    myRigidBody.velocity = new Vector2(moveSpeed, 0f);
+    if(isHit)
+    {
+      return;
+    }
+    
+    myRigidBody.velocity = new Vector2(moveSpeed, myRigidBody.velocity.y);
+  }
+
+  void OnCollisionEnter2D(Collision2D other) {
+    if(other.gameObject.tag == "Player")
+    {
+      isHit = true;
+      StartCoroutine(StopMotion());
+    }
   }
 
   void OnTriggerExit2D(Collider2D other) {
@@ -28,5 +43,11 @@ public class SlimeMovement : MonoBehaviour
   void FlipSprite ()
   {
     transform.localScale = new Vector2(-(Mathf.Sign(myRigidBody.velocity.x)), 1f);
+  }
+
+  IEnumerator StopMotion()
+  {
+    yield return new WaitForSeconds(reactionToHitTimer);
+    isHit = false;
   }
 }

@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class EnemyHealthController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  [SerializeField] int totalHealth ;
+  [SerializeField] GameObject deathEffect;
+  private Rigidbody2D myRigidBody;
 
-    // Update is called once per frame
-    void Update()
+  private void Start() {
+    myRigidBody = GetComponent<Rigidbody2D>();
+  }
+
+  public void DamageEnemy(int damageAmount)
+  {
+    totalHealth -= damageAmount;
+
+    if(totalHealth <= 0)
     {
-        
+      if(deathEffect != null)
+      {
+        Instantiate(deathEffect, transform.position, transform.rotation);
+      }
+
+      Destroy(gameObject);
     }
+  }
+
+  public void EnemyKnockback(float xValue, float yValue)
+  {
+    myRigidBody.velocity += new Vector2(xValue, yValue);
+  }
 }
