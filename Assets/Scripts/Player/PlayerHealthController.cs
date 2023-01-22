@@ -56,11 +56,6 @@ public class PlayerHealthController : MonoBehaviour
 
   public void DamagePlayer(int damageAmount)
   {
-    if (isPlayerInvulnerable)
-    {
-      return;
-    }
-
     currentHealth -= damageAmount;
     PlayerAbilityTracker.instance.StartRecovery(invincibilityLength);
     StartInvulnerability(invincibilityLength);
@@ -78,11 +73,19 @@ public class PlayerHealthController : MonoBehaviour
     UIController.instance.UpdateHealth(currentHealth, maxHealth);
   }
 
-  public void PlayerKnockback(float xValue, float yValue)
+  public void PlayerKnockback(float xValue, float yValue, float direction)
   {
-    float currentPlayerVelocityVector = Mathf.Sign(player.myRigidBody.velocity.x);
-    player.myRigidBody.velocity = new Vector2(0f, 0f);
-    player.myRigidBody.velocity += new Vector2(currentPlayerVelocityVector * xValue, yValue);
+    if(direction != 0)
+    {
+      player.myRigidBody.velocity = new Vector2(0f, 0f);
+      player.myRigidBody.velocity += new Vector2(direction * xValue, yValue);
+    }
+    else if (direction == 0)
+    {
+      float currentPlayerVector = player.transform.localScale.x;
+      player.myRigidBody.velocity = new Vector2(0f, 0f);
+      player.myRigidBody.velocity += new Vector2(-1f * currentPlayerVector * xValue, yValue);
+    }
   }
 
   public void fillHealth()

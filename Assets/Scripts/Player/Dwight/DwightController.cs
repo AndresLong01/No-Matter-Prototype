@@ -11,20 +11,25 @@ public class DwightController : MonoBehaviour
     }
   }
 
+  private PlayerController player;
+  private PlayerAbilityTracker abilityTracker;
+
   [SerializeField] Collider2D myBodyCollider;
   [SerializeField] Animator dwightAnimator;
-
-  private PlayerController player;
+  [SerializeField] float dwightSkillOneActiveTime = 0f;
+  [SerializeField] float dwightCooldownTimer = 25f;
 
   private void Start()
   {
     player = PlayerController.instance;
+    abilityTracker = PlayerAbilityTracker.instance;
     player.SetClassPhysics(myBodyCollider, dwightAnimator);
   }
 
   public void UseAbilityOne()
   {
     Debug.Log("I am Dwight");
+    abilityTracker.AbilityOneTrigger(dwightSkillOneActiveTime, dwightCooldownTimer, false);
   }
 
   public void UseBasicAttack()

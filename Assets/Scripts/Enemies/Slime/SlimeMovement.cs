@@ -8,7 +8,7 @@ public class SlimeMovement : MonoBehaviour
   [SerializeField] BoxCollider2D myEdgeCollider;
 
   [SerializeField] float moveSpeed = 1f;
-  
+
   private bool isHit;
   [SerializeField] float reactionToHitTimer;
 
@@ -19,28 +19,39 @@ public class SlimeMovement : MonoBehaviour
 
   void Update()
   {
-    if(isHit)
+    if (isHit)
     {
       return;
     }
-    
+
     myRigidBody.velocity = new Vector2(moveSpeed, myRigidBody.velocity.y);
   }
 
-  void OnCollisionEnter2D(Collision2D other) {
-    if(other.gameObject.tag == "Player")
+  void OnCollisionEnter2D(Collision2D other)
+  {
+    if (other.gameObject.tag == "Player")
     {
       isHit = true;
       StartCoroutine(StopMotion());
     }
   }
 
-  void OnTriggerExit2D(Collider2D other) {
+  private void OnTriggerEnter2D(Collider2D other)
+  {
+    if (other.gameObject.tag == "Player")
+    {
+      isHit = true;
+      StartCoroutine(StopMotion());
+    }
+  }
+
+  void OnTriggerExit2D(Collider2D other)
+  {
     moveSpeed = -moveSpeed;
     FlipSprite();
   }
 
-  void FlipSprite ()
+  void FlipSprite()
   {
     transform.localScale = new Vector2(-(Mathf.Sign(myRigidBody.velocity.x)), 1f);
   }

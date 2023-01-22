@@ -112,7 +112,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   doubleJumpEffect: {fileID: 4168101528010088934, guid: 0c3142937fa32434ea3ba0caa787378a, type: 3}
   dustEffect: {fileID: 6118246244306223439, guid: 3b38c22ee726fcb49a7e804008998c75, type: 3}
-  isUsingMovementAbility: 0
+  isUsingAbility: 0
 --- !u!114 &2333677674082699317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,18 +133,12 @@ MonoBehaviour:
   - {fileID: 4409275593144324076}
   classSwapCDTimer: 5
   selectedClassIndex: 0
-  FighterUnlocked: 1
-  canBash: 0
-  shieldObject: {fileID: 839577863857238261}
-  bashActiveTimer: 0.3
-  bashCooldownTimer: 3
-  DwightUnlocked: 0
-  canScreamDwight: 0
-  dwightCooldownTimer: 25
   canUseAbilityOneA: 0
   canUseAbilityOneB: 0
   canUseAbilityTwoA: 0
   canUseAbilityTwoB: 0
+  FighterUnlocked: 1
+  DwightUnlocked: 0
 --- !u!114 &120127076038774682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1bec15de34d314587203d015cd856c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerAttacking: 0
 --- !u!1 &2558982758160846083
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,23 +289,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
---- !u!1 &4409275592986163529 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2112759630687690771, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
-  m_PrefabInstance: {fileID: 2333677674055178586}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1146839168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4409275592986163529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2609487b9cf254b5ea41f833e38c0754, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &4409275592986163530 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2112759630687690768, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
@@ -334,17 +312,9 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 2333677674082699305}
     m_Modifications:
-    - target: {fileID: 2128645674, guid: 86489d745b7ca8649985f555d79db599, type: 3}
-      propertyPath: shieldBashKnockbackX
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2128645674, guid: 86489d745b7ca8649985f555d79db599, type: 3}
-      propertyPath: shieldBashKnockbackY
-      value: 14
-      objectReference: {fileID: 0}
     - target: {fileID: 3153686204430928480, guid: 86489d745b7ca8649985f555d79db599, type: 3}
       propertyPath: attackRecoveryTime
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3273498847469762733, guid: 86489d745b7ca8649985f555d79db599, type: 3}
       propertyPath: m_RootOrder
@@ -394,10 +364,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fighter
       objectReference: {fileID: 0}
-    - target: {fileID: 3273498848056202241, guid: 86489d745b7ca8649985f555d79db599, type: 3}
-      propertyPath: m_TagString
-      value: Ground
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 86489d745b7ca8649985f555d79db599, type: 3}
@@ -414,10 +380,5 @@ GameObject:
 --- !u!212 &839577862673918716 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3273498847107763720, guid: 86489d745b7ca8649985f555d79db599, type: 3}
-  m_PrefabInstance: {fileID: 2795339288327726324}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &839577863857238261 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3273498848056202241, guid: 86489d745b7ca8649985f555d79db599, type: 3}
   m_PrefabInstance: {fileID: 2795339288327726324}
   m_PrefabAsset: {fileID: 0}

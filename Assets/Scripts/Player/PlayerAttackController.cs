@@ -8,7 +8,7 @@ public class PlayerAttackController : MonoBehaviour
   private PlayerController player;
   private PlayerAbilityTracker abilityTracker;
 
-  private bool isPlayerAttacking;
+  public bool isPlayerAttacking;
 
   private void Start()
   {
@@ -24,7 +24,7 @@ public class PlayerAttackController : MonoBehaviour
       {
         abilityTracker.GetCurrentClass().GetComponent<FighterController>().UseBasicAttack();
       }
-      else
+      else if ((abilityTracker.GetCurrentClass().name == "Dwight" && !isPlayerAttacking))
       {
         abilityTracker.GetCurrentClass().GetComponent<DwightController>().UseBasicAttack();
       }

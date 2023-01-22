@@ -37,9 +37,8 @@ public class PlayerController : MonoBehaviour
   [SerializeField] GameObject doubleJumpEffect;
   [SerializeField] GameObject dustEffect;
 
-  //private variables
-  [HideInInspector]
-  public bool isUsingMovementAbility;
+  //private variable
+  public bool isUsingAbility;
 
   private Vector2 moveInput;
   private bool isGrounded;
@@ -65,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
   private void OnJump(InputValue value)
   {
-    if(isUsingMovementAbility || isPlayerRecovering)
+    if(isUsingAbility || isPlayerRecovering)
     {
       return;
     }
@@ -90,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
   private void Run()
   {
-    if(isUsingMovementAbility || isPlayerRecovering)
+    if(isUsingAbility || isPlayerRecovering)
     {
       return;
     }
@@ -127,7 +126,7 @@ public class PlayerController : MonoBehaviour
     //checking if the character is touching the ground 
     isGrounded = myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
-    if (!isUsingMovementAbility)
+    if (!isUsingAbility)
     {
       myAnimator.SetBool("IsJumping", !isGrounded);
     }
@@ -139,8 +138,8 @@ public class PlayerController : MonoBehaviour
 
   private void FlipSprite()
   {
-    // if(isUsingMovementAbility || isPlayerRecovering || FindObjectOfType<PlayerAttackController>().is)
-    if(isUsingMovementAbility || isPlayerRecovering)
+    if(isUsingAbility || isPlayerRecovering || FindObjectOfType<PlayerAttackController>().isPlayerAttacking)
+    // if(isUsingAbility || isPlayerRecovering)
     {
       return;
     }

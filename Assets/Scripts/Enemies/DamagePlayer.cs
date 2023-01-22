@@ -18,21 +18,30 @@ public class DamagePlayer : MonoBehaviour
   {
     if (other.gameObject.tag == "Player")
     {
-      DealDamage();
+      float relativeDirectionOfCollision = other.transform.position.x - transform.position.x;
+      DealDamage(relativeDirectionOfCollision);
     }
   }
 
-  private void OnTriggerEnter2D(Collider2D other)
+  // consider trigger for projectiles
+  // private void OnTriggerEnter2D(Collider2D other)
+  // {
+  //   if (other.gameObject.tag == "Player")
+  //   {
+  //     float relativeDirectionOfCollision = other.transform.position.x - transform.position.x;
+  //     DealDamage(relativeDirectionOfCollision);
+  //   }
+  // }
+
+  private void DealDamage(float relativeDirection)
   {
-    if (other.gameObject.tag == "Player")
+    if (FindObjectOfType<PlayerHealthController>().isPlayerInvulnerable)
     {
-      DealDamage();
+      return;
     }
-  }
 
-  private void DealDamage()
-  {
+    float direction = Mathf.Sign(relativeDirection);
     player.GetComponent<PlayerHealthController>().DamagePlayer(damageAmount);
-    player.GetComponent<PlayerHealthController>().PlayerKnockback(xKnockbackAmount, 10f);
+    player.GetComponent<PlayerHealthController>().PlayerKnockback(xKnockbackAmount, 10f, direction);
   }
 }

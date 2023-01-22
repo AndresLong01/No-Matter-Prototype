@@ -32,18 +32,23 @@ public class PlayerAbilityTracker : MonoBehaviour
   public int selectedClassIndex;
   private bool canSwapClass;
 
+  [Header("Ability One")]
+  public bool canUseAbilityOneA, canUseAbilityOneB;
+  private Coroutine AbilityOneACO, AbilityOneBCO;
+  private Coroutine AbilityOneACooldownCO, AbilityOneBCooldownCO;
+
+  [Header("Ability Two")]
+  public bool canUseAbilityTwoA, canUseAbilityTwoB;
+  // private Coroutine AbilityTwoACO, AbilityTwoBCO;
+  // private Coroutine AbilityTwoACooldownCO, AbilityTwoBCooldownCO;
+
   //Can probably move some of these back to fighter
   [Header("Fighter Section")]
-  public bool FighterUnlocked, canBash;
-  [SerializeField] GameObject shieldObject;
-  [SerializeField] float bashActiveTimer = 0.3f;
-  [SerializeField] float bashCooldownTimer = 3f;
-
-  private Coroutine shieldBashInstance;
+  public bool FighterUnlocked;
 
   [Header("Dwight Section")]
-  public bool DwightUnlocked, canScreamDwight;
-  [SerializeField] float dwightCooldownTimer = 25f;
+  public bool DwightUnlocked;
+  
 
   // Start is called before the first frame update
   void Start()
@@ -54,26 +59,30 @@ public class PlayerAbilityTracker : MonoBehaviour
     selectedClassIndex = 0;
     canSwapClass = true;
 
-    //little funny easter egg
-    canScreamDwight = true;
+    canUseAbilityOneA =true;
+    canUseAbilityOneB = true;
+    canUseAbilityTwoA = true; 
+    canUseAbilityTwoB = true;
   }
-  // ------------------------------------------------------------------- ABILITY USE ---------------------------------------------------------------------------
+  // ------------------------------------------------------------------- INPUT SYSTEM CALLS ---------------------------------------------------------------------------
 
-  //TODO: change this in the future in accordance to multiple abilitys used
-  private void OnAbilityUse(InputValue value)
+  private void OnAbilityOneUse(InputValue value)
   {
+    if((selectedClassIndex == 0 && !canUseAbilityOneA) || 
+       (selectedClassIndex == 1 && !canUseAbilityOneB))
+    {
+      return;
+    }
     //maybe object mapping, not sure yet
     if (value.isPressed)
     {
-      if (GetCurrentClass().name == "Fighter" && canBash)
+      if (GetCurrentClass().name == "Fighter")
       {
         GetCurrentClass().GetComponent<FighterController>().UseAbilityOne();
       }
-      else if (GetCurrentClass().name == "Dwight" && canScreamDwight)
+      else if (GetCurrentClass().name == "Dwight")
       {
         GetCurrentClass().GetComponent<DwightController>().UseAbilityOne();
-        // for testing purposes
-        StartCoroutine(TestDwight(dwightCooldownTimer));
       }
     }
   }
@@ -91,7 +100,7 @@ public class PlayerAbilityTracker : MonoBehaviour
     player.isPlayerRecovering = true;
     yield return new WaitForSeconds(recoveryTime);
 
-    player.isUsingMovementAbility = false;
+    player.isUsingAbility = false;
     player.isPlayerRecovering = false;
   }
 
@@ -110,7 +119,7 @@ public class PlayerAbilityTracker : MonoBehaviour
 
     if (value.isPressed && canSwapClass)
     {
-      player.isUsingMovementAbility = false;
+      player.isUsingAbility = false;
       canSwapClass = false;
       activeClasses[selectedClassIndex].SetActive(!activeClasses[selectedClassIndex].activeSelf);
 
@@ -137,77 +146,67 @@ public class PlayerAbilityTracker : MonoBehaviour
     canSwapClass = true;
   }
 
-  // ----------------------------------------------------------------- FIGHTER METHODS ---------------------------------------------------------------------------
-  public void useShieldBash()
+  // ----------------------------------------------------------------- Ability One METHODS ---------------------------------------------------------------------------
+
+  public void AbilityOneTrigger(float abilityActiveDuration, float abilityCooldownDuration, bool isInvincibleDuringDuration)
   {
-    shieldBashInstance = StartCoroutine(ShieldBash(bashActiveTimer));
-    StartCoroutine(ShieldBashCooldown(bashCooldownTimer));
-  }
-
-  //stopping the bash on collision
-  public void stopShieldBashEarly()
-  {
-    StopCoroutine(shieldBashInstance);
-    canBash = false;
-    player.isUsingMovementAbility = false;
-    shieldObject.SetActive(false);
-    player.myRigidBody.gravityScale = initialGravity;
-  }
-
-  IEnumerator ShieldBash(float bashActiveTimer)
-  {
-    //Gives player invincibility for bash
-    //Could assign this to aCoroutine type
-    FindObjectOfType<PlayerHealthController>().StartInvulnerability(bashActiveTimer);
-    canBash = false;
-
-    yield return new WaitForSeconds(bashActiveTimer);
-
-    player.isUsingMovementAbility = false;
-    shieldObject.SetActive(false);
-    // player.myRigidBody.velocity = new Vector2(0f, 0f);
-    player.myRigidBody.gravityScale = initialGravity;
-  }
-
-  IEnumerator ShieldBashCooldown(float bashCooldownTimer)
-  {
-    UI.timerController.SetAbilityOneTimer(selectedClassIndex, bashCooldownTimer);
-    yield return new WaitForSeconds(bashCooldownTimer);
-
-    canBash = true;
-  }
-
-  // ----------------------------------------------------------------- DWIGHT METHODS ---------------------------------------------------------------------------
-  IEnumerator TestDwight(float dwightCooldownTimer)
-  {
-    UI.timerController.SetAbilityOneTimer(selectedClassIndex, dwightCooldownTimer);
-    canScreamDwight = false;
-
-    yield return new WaitForSeconds(dwightCooldownTimer);
-    canScreamDwight = true;
-  }
-
-  // ----------------------------------------------------------------- REFACTOR POTENTIAL ---------------------------------------------------------------------------
-  public bool canUseAbilityOneA, canUseAbilityOneB;
-  public bool canUseAbilityTwoA, canUseAbilityTwoB;
-
-  public void UseAbilityOne(int selectedClassIndex, bool isInvincibleDuringDuration)
-  {
-    if (selectedClassIndex == 0)
+    if (selectedClassIndex == 0 && canUseAbilityOneA)
     {
       canUseAbilityOneA = false;
+      player.isUsingAbility = true;
+
       //Start coroutine for Slot 1
+      AbilityOneACO = StartCoroutine(ActivateAbilityOne(abilityActiveDuration, isInvincibleDuringDuration));
+      AbilityOneACooldownCO = StartCoroutine(AbilityOneCooldown(abilityCooldownDuration, 0));
     }
-    else if (selectedClassIndex == 1)
+    else if (selectedClassIndex == 1 && canUseAbilityOneB)
     {
       canUseAbilityOneB = false;
       //Start coroutine for Slot 2
+      AbilityOneBCO = StartCoroutine(ActivateAbilityOne(abilityActiveDuration, isInvincibleDuringDuration));
+      AbilityOneBCooldownCO = StartCoroutine(AbilityOneCooldown(abilityCooldownDuration, 1));
     }
   }
 
   //for example if ability gets interrupted by damage or by collision early in the case of bash
   public void StopAbilityOneEarly()
   {
+    if (selectedClassIndex == 0)
+    {
+      StopCoroutine(AbilityOneACO);
+    }
+    else if (selectedClassIndex == 1)
+    {
+      StopCoroutine(AbilityOneBCO);
+    }
+    player.isUsingAbility = false;
+    player.myRigidBody.gravityScale = initialGravity;
+  }
 
+  IEnumerator ActivateAbilityOne(float abilityActiveDuration, bool isInvincibleDuringDuration)
+  {
+    if (isInvincibleDuringDuration)
+    {
+      FindObjectOfType<PlayerHealthController>().StartInvulnerability(abilityActiveDuration);
+    }
+    yield return new WaitForSeconds(abilityActiveDuration);
+
+    player.isUsingAbility = false;
+    player.myRigidBody.gravityScale = initialGravity;
+  }
+
+  IEnumerator AbilityOneCooldown(float abilityCooldownDuration, int storedSelectedClass)
+  {
+    UI.timerController.SetAbilityOneTimer(selectedClassIndex, abilityCooldownDuration);
+    yield return new WaitForSeconds(abilityCooldownDuration);
+    
+    if(storedSelectedClass == 0)
+    {
+      canUseAbilityOneA = true;
+    }
+    else
+    {
+      canUseAbilityOneB = true;
+    }
   }
 }
