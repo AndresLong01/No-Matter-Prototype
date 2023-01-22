@@ -26,4 +26,10 @@ public class DwightController : MonoBehaviour
   {
     Debug.Log("I am Dwight");
   }
+
+  public void UseBasicAttack()
+  {
+    Debug.Log("yo");
+    player.myAnimator.SetTrigger("Attack");
+  }
 }

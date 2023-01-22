@@ -24,6 +24,10 @@ public class PlayerAttackController : MonoBehaviour
       {
         abilityTracker.GetCurrentClass().GetComponent<FighterController>().UseBasicAttack();
       }
+      else
+      {
+        abilityTracker.GetCurrentClass().GetComponent<DwightController>().UseBasicAttack();
+      }
     }
   }
 
