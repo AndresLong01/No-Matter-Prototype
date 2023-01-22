@@ -2056,13 +2056,8 @@ MonoBehaviour:
   healthSlider: {fileID: 2140978180}
   timerController: {fileID: 0}
   classSwapTimer: {fileID: 2061348134}
-<<<<<<< HEAD
   abilityOneA: {fileID: 1424331309}
   abilityTwoA: {fileID: 1791451027}
-=======
-  abilityOneA: {fileID: 1791451027}
-  abilityTwoA: {fileID: 1424331309}
->>>>>>> 2ea784d4734961f1dd716c7cc9544040e7fdfde5
   abilityOneB: {fileID: 1868121309}
   abilityTwoB: {fileID: 1626595430}
   classOneGameObjects:
