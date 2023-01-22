@@ -139,6 +139,7 @@ public class PlayerController : MonoBehaviour
 
   private void FlipSprite()
   {
+    // if(isUsingMovementAbility || isPlayerRecovering || FindObjectOfType<PlayerAttackController>().is)
     if(isUsingMovementAbility || isPlayerRecovering)
     {
       return;

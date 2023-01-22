@@ -157,13 +157,13 @@ public class PlayerAbilityTracker : MonoBehaviour
   IEnumerator ShieldBash(float bashActiveTimer)
   {
     //Gives player invincibility for bash
-    player.isPlayerRecovering = true;
+    //Could assign this to aCoroutine type
+    FindObjectOfType<PlayerHealthController>().StartInvulnerability(bashActiveTimer);
     canBash = false;
 
     yield return new WaitForSeconds(bashActiveTimer);
 
     player.isUsingMovementAbility = false;
-    player.isPlayerRecovering = false;
     shieldObject.SetActive(false);
     // player.myRigidBody.velocity = new Vector2(0f, 0f);
     player.myRigidBody.gravityScale = initialGravity;
@@ -185,5 +185,29 @@ public class PlayerAbilityTracker : MonoBehaviour
 
     yield return new WaitForSeconds(dwightCooldownTimer);
     canScreamDwight = true;
+  }
+
+  // ----------------------------------------------------------------- REFACTOR POTENTIAL ---------------------------------------------------------------------------
+  public bool canUseAbilityOneA, canUseAbilityOneB;
+  public bool canUseAbilityTwoA, canUseAbilityTwoB;
+
+  public void UseAbilityOne(int selectedClassIndex, bool isInvincibleDuringDuration)
+  {
+    if (selectedClassIndex == 0)
+    {
+      canUseAbilityOneA = false;
+      //Start coroutine for Slot 1
+    }
+    else if (selectedClassIndex == 1)
+    {
+      canUseAbilityOneB = false;
+      //Start coroutine for Slot 2
+    }
+  }
+
+  //for example if ability gets interrupted by damage or by collision early in the case of bash
+  public void StopAbilityOneEarly()
+  {
+
   }
 }

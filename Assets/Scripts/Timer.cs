@@ -74,6 +74,7 @@ public class Timer : MonoBehaviour
     }
 
     //might need revision
+    //Slot One of loadout
     if (abilityOneACurrentTimer > 0 || abilityTwoACurrentTimer > 0)
     {
       abilityOneACurrentTimer -= Time.deltaTime;
@@ -83,6 +84,7 @@ public class Timer : MonoBehaviour
       fillFractionAbilityTwoA = abilityTwoACurrentTimer / abilityTwoAMaxTimer;
     }
 
+    //Slot Two of Loadout
     if (abilityOneBCurrentTimer > 0 || abilityTwoBCurrentTimer > 0)
     {
       abilityOneBCurrentTimer -= Time.deltaTime;

@@ -11,6 +11,7 @@ public class PlayerHealthController : MonoBehaviour
   public int maxHealth;
 
   [Header("Invincibility Timers")]
+  public bool isPlayerInvulnerable;
   [SerializeField] float invincibilityLength;
   [SerializeField] float flashLength;
 
@@ -55,13 +56,14 @@ public class PlayerHealthController : MonoBehaviour
 
   public void DamagePlayer(int damageAmount)
   {
-    if (player.isPlayerRecovering)
+    if (isPlayerInvulnerable)
     {
       return;
     }
 
     currentHealth -= damageAmount;
     PlayerAbilityTracker.instance.StartRecovery(invincibilityLength);
+    StartInvulnerability(invincibilityLength);
 
     if (currentHealth <= 0)
     {
@@ -87,5 +89,18 @@ public class PlayerHealthController : MonoBehaviour
   {
     currentHealth = maxHealth;
     UIController.instance.UpdateHealth(currentHealth, maxHealth);
+  }
+
+  public void StartInvulnerability(float invulnerabilityTime)
+  {
+    isPlayerInvulnerable = true;
+    StartCoroutine(InvulnerabilityPeriod(invulnerabilityTime));
+  }
+
+  IEnumerator InvulnerabilityPeriod(float invulnerabilityTime)
+  {
+    yield return new WaitForSeconds(invulnerabilityTime);
+
+    isPlayerInvulnerable = false;
   }
 }

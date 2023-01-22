@@ -1334,10 +1334,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillFractionClassSwap: 0
-  fillFractionSkillOneA: 0
-  fillFractionSkillOneB: 0
-  fillFractionSkillTwoA: 0
-  fillFractionSkillTwoB: 0
+  fillFractionAbilityOneA: 0
+  fillFractionAbilityOneB: 0
+  fillFractionAbilityTwoA: 0
+  fillFractionAbilityTwoB: 0
 --- !u!4 &569218656
 Transform:
   m_ObjectHideFlags: 0
@@ -2039,10 +2039,10 @@ MonoBehaviour:
   healthSlider: {fileID: 2140978180}
   timerController: {fileID: 0}
   classSwapTimer: {fileID: 2061348134}
-  skillOneA: {fileID: 1424331309}
-  skillTwoA: {fileID: 1791451027}
-  skillOneB: {fileID: 1868121309}
-  skillTwoB: {fileID: 1626595430}
+  abilityOneA: {fileID: 1424331309}
+  abilityTwoA: {fileID: 1791451027}
+  abilityOneB: {fileID: 1868121309}
+  abilityTwoB: {fileID: 1626595430}
   classOneGameObjects:
   - {fileID: 2003016699}
   - {fileID: 1424331306}
@@ -7345,7 +7345,7 @@ GameObject:
   - component: {fileID: 1653205963}
   - component: {fileID: 1653205962}
   m_Layer: 5
-  m_Name: Skill One
+  m_Name: Ability One
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8205,7 +8205,7 @@ GameObject:
   - component: {fileID: 1914319468}
   - component: {fileID: 1914319467}
   m_Layer: 5
-  m_Name: Skill Two
+  m_Name: Ability Two
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
