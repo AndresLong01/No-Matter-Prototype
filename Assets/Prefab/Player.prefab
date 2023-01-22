@@ -141,6 +141,10 @@ MonoBehaviour:
   DwightUnlocked: 0
   canScreamDwight: 0
   dwightCooldownTimer: 25
+  canUseAbilityOneA: 0
+  canUseAbilityOneB: 0
+  canUseAbilityTwoA: 0
+  canUseAbilityTwoB: 0
 --- !u!114 &120127076038774682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
+  isPlayerInvulnerable: 0
   invincibilityLength: 0.5
   flashLength: 0.1
   playerSprites:
@@ -289,6 +294,23 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
+--- !u!1 &4409275592986163529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2112759630687690771, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
+  m_PrefabInstance: {fileID: 2333677674055178586}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1146839168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409275592986163529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2609487b9cf254b5ea41f833e38c0754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &4409275592986163530 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2112759630687690768, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
