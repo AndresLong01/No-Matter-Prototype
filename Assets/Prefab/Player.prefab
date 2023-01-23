@@ -290,7 +290,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
-<<<<<<< HEAD
 --- !u!1 &4409275592986163529 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2112759630687690771, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
@@ -309,8 +308,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Arrow: {fileID: 0}
-=======
->>>>>>> cfd7e245e1077d76f48e50f262b91c5e3e3783ea
 --- !u!212 &4409275592986163530 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2112759630687690768, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
