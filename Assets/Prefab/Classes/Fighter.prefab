@@ -260,6 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3273498847469762733}
   - component: {fileID: 3153686204430928480}
+  - component: {fileID: 1527806481}
   m_Layer: 8
   m_Name: Fighter
   m_TagString: Untagged
@@ -282,7 +283,7 @@ Transform:
   - {fileID: 3273498847107763722}
   - {fileID: 3273498848056202240}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3153686204430928480
 MonoBehaviour:
@@ -302,12 +303,25 @@ MonoBehaviour:
   bashEffect: {fileID: 7829885149290896948, guid: 3f6400f7352efaa49b8eeb64d2f16926, type: 3}
   bashEffectColor: {r: 0.4745098, g: 0.4745098, b: 0.4745098, a: 0.6}
   shieldObject: {fileID: 3273498848056202241}
-  attackRecoveryTime: 0.4
+  attackRecoveryTime: 0.5
   bashActiveTimer: 0.3
   bashCooldownTimer: 3
   shieldBashDistance: 15
   bashEffectLifetime: 0.5
   timeBetweenEffects: 0.033333335
+--- !u!114 &1527806481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3273498847469762734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dde0ac8271b3e4283a1d4403538e82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  classIcon: {fileID: 21300000, guid: aa6e33846776784408edc91839f8a8ff, type: 3}
 --- !u!1 &3273498848056202241
 GameObject:
   m_ObjectHideFlags: 0

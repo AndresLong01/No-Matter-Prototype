@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2112759629975606965}
   - component: {fileID: 1539284907882104578}
+  - component: {fileID: 828875720}
   m_Layer: 8
   m_Name: Dwight
   m_TagString: Untagged
@@ -49,6 +50,19 @@ MonoBehaviour:
   dwightAnimator: {fileID: 2112759630687690769}
   dwightSkillOneActiveTime: 0
   dwightCooldownTimer: 25
+--- !u!114 &828875720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112759629975606966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dde0ac8271b3e4283a1d4403538e82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  classIcon: {fileID: 21300000, guid: dadc521724aad3f4798eec1e754b0466, type: 3}
 --- !u!1 &2112759630687690771
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,6 +76,7 @@ GameObject:
   - component: {fileID: 2112759630687690769}
   - component: {fileID: 2112759630687690775}
   - component: {fileID: 1146839168}
+  - component: {fileID: 8880134815126418525}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -184,3 +199,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609487b9cf254b5ea41f833e38c0754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Arrow: {fileID: 5488435678791410834, guid: 9754034b457844b479295ec9d268cbc9, type: 3}
+--- !u!114 &8880134815126418525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112759630687690771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2609487b9cf254b5ea41f833e38c0754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Arrow: {fileID: 5488435678791410834, guid: 9754034b457844b479295ec9d268cbc9, type: 3}
