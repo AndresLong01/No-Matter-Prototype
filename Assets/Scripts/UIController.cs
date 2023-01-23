@@ -22,6 +22,9 @@ public class UIController : MonoBehaviour
     }
   }
 
+  [Header("Pause Screen")]
+  [SerializeField] GameObject pauseScreen;
+
   [Header("Resource Bars")]
   public Slider healthSlider;
 
@@ -48,6 +51,11 @@ public class UIController : MonoBehaviour
 
   void Update()
   {
+    if(Input.GetKeyDown(KeyCode.Escape))
+    {
+      PauseUnpause();
+    }
+
     classSwapTimer.fillAmount = timerController.fillFractionClassSwap;
 
     //class index 0
@@ -92,7 +100,19 @@ public class UIController : MonoBehaviour
     }
   }
 
+  public void PauseUnpause()
+  {
+    pauseScreen.SetActive(!pauseScreen.activeSelf);
 
+    if(pauseScreen.activeSelf)
+    {
+      Time.timeScale = 0f;
+    }
+    else
+    {
+      Time.timeScale = 1f;
+    }
+  }
 }
 
 

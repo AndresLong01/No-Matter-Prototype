@@ -265,6 +265,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Menu
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 226
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13644173863b5b5449b5092c6567bf10
+      internalID: -2069770729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -279,6 +300,7 @@ TextureImporter:
       HP_Background: -1379714594
       Current Class Icon: -471962197
       MP_Top_Layer: 87621756
+      Menu: -2069770729
       MP_Background: 2000362684
       HP_Top_Layer: 72033952
       MP_Inner_Laye: 1644578346

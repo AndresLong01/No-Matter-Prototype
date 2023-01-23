@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myBodyCollider: {fileID: 2112759630687690775}
   dwightAnimator: {fileID: 2112759630687690769}
+  dwightSkillOneActiveTime: 0
+  dwightCooldownTimer: 25
 --- !u!1 &2112759630687690771
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,6 +61,7 @@ GameObject:
   - component: {fileID: 2112759630687690768}
   - component: {fileID: 2112759630687690769}
   - component: {fileID: 2112759630687690775}
+  - component: {fileID: 1146839168}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -169,3 +172,15 @@ CapsuleCollider2D:
   m_Offset: {x: -0.03999999, y: -0.07674736}
   m_Size: {x: 0.55, y: 0.85349476}
   m_Direction: 0
+--- !u!114 &1146839168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112759630687690771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2609487b9cf254b5ea41f833e38c0754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

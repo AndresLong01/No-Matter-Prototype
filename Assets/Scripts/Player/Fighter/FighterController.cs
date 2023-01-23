@@ -13,12 +13,14 @@ public class FighterController : MonoBehaviour
   }
 
   [SerializeField] Collider2D myBodyCollider;
-  [SerializeField] GameObject shieldObject;
   [SerializeField] Animator fighterAnimator;
   [SerializeField] SpriteRenderer mySpriteRenderer, bashEffect;
   [SerializeField] Color bashEffectColor;
+  public GameObject shieldObject;
 
   [SerializeField] float attackRecoveryTime = 1f;
+  [SerializeField] float bashActiveTimer = 0.3f;
+  [SerializeField] float bashCooldownTimer = 3f;
   [SerializeField] float shieldBashDistance = 15f;
   [SerializeField] float bashEffectLifetime, timeBetweenEffects;
 
@@ -30,14 +32,13 @@ public class FighterController : MonoBehaviour
   {
     //accessing the player controller instance
     player = PlayerController.instance;
-    abilityTracker = FindObjectOfType<PlayerAbilityTracker>();
+    abilityTracker = PlayerAbilityTracker.instance;
     player.SetClassPhysics(myBodyCollider, fighterAnimator);
-    abilityTracker.canBash = true;
   }
 
   private void Update()
   {
-    if (player.isUsingMovementAbility)
+    if (player.isUsingAbility)
     {
       bashEffectTimer -= Time.deltaTime;
       if (bashEffectTimer <= 0)
@@ -55,10 +56,13 @@ public class FighterController : MonoBehaviour
 
   public void UseAbilityOne()
   {
-    shieldObject.SetActive(true);
-    player.isUsingMovementAbility = true;
+    if(player.isUsingAbility)
+    {
+      return;
+    }
 
-    abilityTracker.useShieldBash();
+    StartCoroutine(ShowShield(bashActiveTimer));
+    abilityTracker.AbilityOneTrigger(bashActiveTimer, bashCooldownTimer, true);
 
     //resetting momentum and bashing
     player.myRigidBody.velocity = new Vector2(0f, 0f);
@@ -77,5 +81,13 @@ public class FighterController : MonoBehaviour
     Destroy(image.gameObject, bashEffectLifetime);
 
     bashEffectTimer = timeBetweenEffects;
+  }
+
+  IEnumerator ShowShield (float shieldActiveTimer)
+  {
+    shieldObject.SetActive(true);
+
+    yield return new WaitForSeconds(shieldActiveTimer);
+    shieldObject.SetActive(false);
   }
 }
