@@ -18,9 +18,9 @@ public class PlayerAttackController : MonoBehaviour
 
   private void OnAttack(InputValue value)
   {
-    if (value.isPressed)
+    if (value.isPressed && !isPlayerAttacking)
     {
-      if (abilityTracker.GetCurrentClass().name == "Fighter" && !isPlayerAttacking)
+      if (abilityTracker.GetCurrentClass().name == "Fighter")
       {
         abilityTracker.GetCurrentClass().GetComponent<FighterController>().UseBasicAttack();
       }

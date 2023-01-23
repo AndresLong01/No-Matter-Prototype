@@ -39,7 +39,7 @@ Transform:
   - {fileID: 2333677672317732032}
   - {fileID: 2558982758160846080}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2333677674082699316
 Rigidbody2D:
@@ -290,6 +290,27 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
+<<<<<<< HEAD
+--- !u!1 &4409275592986163529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2112759630687690771, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
+  m_PrefabInstance: {fileID: 2333677674055178586}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1146839168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409275592986163529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2609487b9cf254b5ea41f833e38c0754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Arrow: {fileID: 0}
+=======
+>>>>>>> cfd7e245e1077d76f48e50f262b91c5e3e3783ea
 --- !u!212 &4409275592986163530 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2112759630687690768, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
