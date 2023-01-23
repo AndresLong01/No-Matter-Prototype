@@ -98,10 +98,10 @@ public class Timer : MonoBehaviour
   public void CancelTimers()
   {
     // resets all timers
-    currentTimerValueClassSwap = 0;
-    abilityOneACurrentTimer = 0;
-    abilityOneBCurrentTimer = 0;
-    abilityTwoACurrentTimer = 0;
-    abilityTwoBCurrentTimer = 0;
+    currentTimerValueClassSwap = 0.1f;
+    abilityOneACurrentTimer = 0.1f;
+    abilityOneBCurrentTimer = 0.1f;
+    abilityTwoACurrentTimer = 0.1f;
+    abilityTwoBCurrentTimer = 0.1f;
   }
 }

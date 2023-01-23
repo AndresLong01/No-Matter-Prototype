@@ -16,6 +16,7 @@ public class DwightController : MonoBehaviour
 
   [SerializeField] Collider2D myBodyCollider;
   [SerializeField] Animator dwightAnimator;
+  
   [SerializeField] float dwightSkillOneActiveTime = 0f;
   [SerializeField] float dwightCooldownTimer = 25f;
 

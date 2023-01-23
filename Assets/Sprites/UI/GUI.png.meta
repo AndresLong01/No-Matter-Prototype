@@ -274,7 +274,7 @@ TextureImporter:
         width: 44
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -282,6 +282,27 @@ TextureImporter:
       bones: []
       spriteID: 13644173863b5b5449b5092c6567bf10
       internalID: -2069770729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 209
+        width: 46
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a689a291b90f34469cc39b22397e7b9
+      internalID: -376387718
       vertices: []
       indices: 
       edges: []
@@ -304,6 +325,7 @@ TextureImporter:
       MP_Background: 2000362684
       HP_Top_Layer: 72033952
       MP_Inner_Laye: 1644578346
+      Button: -376387718
       MP_Inner_Layer: -30071406
   spritePackingTag: 
   pSDRemoveMatte: 0

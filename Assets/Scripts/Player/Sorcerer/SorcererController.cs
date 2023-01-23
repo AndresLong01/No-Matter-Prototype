@@ -15,7 +15,7 @@ public class SorcererController : MonoBehaviour
   [SerializeField] Collider2D myBodyCollider;
   [SerializeField] Animator sorcererAnimator;
 
-  [SerializeField] float attackRecoveryTime = 1f;
+  // [SerializeField] float attackRecoveryTime = 1f;
 
   private PlayerController player;
   private PlayerAbilityTracker abilityTracker;

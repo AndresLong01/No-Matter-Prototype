@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 //TODO: for pause menu later
 using UnityEngine.SceneManagement;
 
@@ -22,8 +23,15 @@ public class UIController : MonoBehaviour
     }
   }
 
+  private PlayerAbilityTracker abilityTracker;
+  private PlayerController player;
+
   [Header("Pause Screen")]
   [SerializeField] GameObject pauseScreen;
+  [SerializeField] GameObject loadoutSelectionA;
+  [SerializeField] Image currentClassA;
+  [SerializeField] GameObject loadoutSelectionB;
+  [SerializeField] Image currentClassB;
 
   [Header("Resource Bars")]
   public Slider healthSlider;
@@ -46,6 +54,8 @@ public class UIController : MonoBehaviour
 
   void Start()
   {
+    abilityTracker = PlayerAbilityTracker.instance;
+    player = PlayerController.instance;
     timerController = FindObjectOfType<Timer>();
   }
 
@@ -106,12 +116,60 @@ public class UIController : MonoBehaviour
 
     if(pauseScreen.activeSelf)
     {
+      LoadCurrentClassLoadout();
+      player.GetComponent<PlayerInput>().currentActionMap.Disable();
+      loadoutSelectionA.SetActive(false);
+      loadoutSelectionB.SetActive(false);
       Time.timeScale = 0f;
     }
     else
     {
+      foreach(GameObject playerClass in abilityTracker.availableClasses)
+      {
+        playerClass.SetActive(false);
+        timerController.CancelTimers();
+        abilityTracker.ResetCooldowns();
+      }
+      abilityTracker.activeClasses[0].SetActive(true);
+      abilityTracker.selectedClassIndex = 0;
+      SwapActiveUI(0);
+      player.GetComponent<PlayerInput>().currentActionMap.Enable();
       Time.timeScale = 1f;
     }
+  }
+
+  private void LoadCurrentClassLoadout()
+  {
+    Sprite classIconA = abilityTracker.activeClasses[0].GetComponent<ClassUIFeatures>().classIcon;
+    Sprite classIconB = abilityTracker.activeClasses[1].GetComponent<ClassUIFeatures>().classIcon;
+
+    currentClassA.sprite = classIconA;
+    currentClassB.sprite = classIconB;
+  }
+
+  public void RevealLoadoutA()
+  {
+    loadoutSelectionB.SetActive(false);
+    loadoutSelectionA.SetActive(!loadoutSelectionA.activeSelf);
+  }
+
+  public void RevealLoadoutB()
+  {
+    loadoutSelectionA.SetActive(false);
+    loadoutSelectionB.SetActive(!loadoutSelectionA.activeSelf);
+  }
+
+  //TODO: have to run check to make sure you don't select the same class twice
+  public void selectActiveClassA(int unlockedClassId)
+  {
+    abilityTracker.activeClasses[0] = abilityTracker.availableClasses[unlockedClassId];
+    LoadCurrentClassLoadout();
+  }
+
+  public void selectActiveClassB(int unlockedClassId)
+  {
+    abilityTracker.activeClasses[1] = abilityTracker.availableClasses[unlockedClassId];
+    LoadCurrentClassLoadout();
   }
 }
 

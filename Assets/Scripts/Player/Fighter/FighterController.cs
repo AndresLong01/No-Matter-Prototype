@@ -68,6 +68,8 @@ public class FighterController : MonoBehaviour
     player.myRigidBody.velocity = new Vector2(0f, 0f);
     //preventing gravity falloff
     player.myRigidBody.gravityScale = 0;
+    Debug.Log(player.myRigidBody);
+    Debug.Log(shieldBashDistance);
     player.myRigidBody.velocity += new Vector2(shieldBashDistance * player.transform.localScale.x * 1f, 0f);
   }
 

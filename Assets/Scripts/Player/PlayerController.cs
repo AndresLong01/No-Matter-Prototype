@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
     }
   }
 
+  //TODO: Fix getting stuck on corners, consider: Making it a box collider instead of capsule collider
   private void Run()
   {
     if(isUsingAbility || isPlayerRecovering)

@@ -26,9 +26,9 @@ public class PlayerAbilityTracker : MonoBehaviour
   private float initialGravity;
 
   [Header("Class Swap Section")]
-  [SerializeField] GameObject[] availableClasses;
-  [SerializeField] GameObject[] activeClasses;
-  [SerializeField] float classSwapCDTimer = 5f;
+  public GameObject[] availableClasses;
+  public GameObject[] activeClasses;
+  public float classSwapCDTimer = 5f;
   public int selectedClassIndex;
   private bool canSwapClass;
 
@@ -48,7 +48,7 @@ public class PlayerAbilityTracker : MonoBehaviour
 
   [Header("Dwight Section")]
   public bool DwightUnlocked;
-  
+
 
   // Start is called before the first frame update
   void Start()
@@ -59,21 +59,22 @@ public class PlayerAbilityTracker : MonoBehaviour
     selectedClassIndex = 0;
     canSwapClass = true;
 
-    canUseAbilityOneA =true;
+    canUseAbilityOneA = true;
     canUseAbilityOneB = true;
-    canUseAbilityTwoA = true; 
+    canUseAbilityTwoA = true;
     canUseAbilityTwoB = true;
   }
   // ------------------------------------------------------------------- INPUT SYSTEM CALLS ---------------------------------------------------------------------------
 
   private void OnAbilityOneUse(InputValue value)
   {
-    if((selectedClassIndex == 0 && !canUseAbilityOneA) || 
+    if ((selectedClassIndex == 0 && !canUseAbilityOneA) ||
        (selectedClassIndex == 1 && !canUseAbilityOneB))
     {
       return;
     }
     //maybe object mapping, not sure yet
+    // REPLICATE CLASSUIFEATURES LOGIC WITH THIS ONE
     if (value.isPressed)
     {
       if (GetCurrentClass().name == "Fighter")
@@ -162,6 +163,7 @@ public class PlayerAbilityTracker : MonoBehaviour
     else if (selectedClassIndex == 1 && canUseAbilityOneB)
     {
       canUseAbilityOneB = false;
+      player.isUsingAbility = true;
       //Start coroutine for Slot 2
       AbilityOneBCO = StartCoroutine(ActivateAbilityOne(abilityActiveDuration, isInvincibleDuringDuration));
       AbilityOneBCooldownCO = StartCoroutine(AbilityOneCooldown(abilityCooldownDuration, 1));
@@ -199,8 +201,8 @@ public class PlayerAbilityTracker : MonoBehaviour
   {
     UI.timerController.SetAbilityOneTimer(selectedClassIndex, abilityCooldownDuration);
     yield return new WaitForSeconds(abilityCooldownDuration);
-    
-    if(storedSelectedClass == 0)
+
+    if (storedSelectedClass == 0)
     {
       canUseAbilityOneA = true;
     }
@@ -208,5 +210,21 @@ public class PlayerAbilityTracker : MonoBehaviour
     {
       canUseAbilityOneB = true;
     }
+  }
+
+  public void ResetCooldowns()
+  {
+    if (AbilityOneACooldownCO != null)
+    {
+      StopCoroutine(AbilityOneACooldownCO);
+    }
+    if (AbilityOneBCooldownCO != null)
+    {
+
+      StopCoroutine(AbilityOneBCooldownCO);
+    }
+
+    canUseAbilityOneA = true;
+    canUseAbilityOneB = true;
   }
 }
