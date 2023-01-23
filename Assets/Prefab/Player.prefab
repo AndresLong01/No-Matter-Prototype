@@ -38,7 +38,7 @@ Transform:
   - {fileID: 4409275593144324079}
   - {fileID: 2558982758160846080}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2333677674082699316
 Rigidbody2D:
@@ -311,6 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609487b9cf254b5ea41f833e38c0754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Arrow: {fileID: 0}
 --- !u!212 &4409275592986163530 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2112759630687690768, guid: 865f5714c19101e4991a68d0c1f02007, type: 3}
