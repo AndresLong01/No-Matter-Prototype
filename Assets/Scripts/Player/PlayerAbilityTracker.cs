@@ -118,6 +118,11 @@ public class PlayerAbilityTracker : MonoBehaviour
       return;
     }
 
+    if (FindObjectOfType<PlayerAttackController>().isPlayerAttacking)
+    {
+      return;
+    }
+
     if (value.isPressed && canSwapClass)
     {
       player.isUsingAbility = false;

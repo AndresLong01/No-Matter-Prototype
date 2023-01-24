@@ -9,23 +9,32 @@ public class FighterController : MonoBehaviour
     if (player != null)
     {
       player.SetClassPhysics(myBodyCollider, fighterAnimator);
+      currentComboTimer = 0;
     }
   }
 
+  private PlayerController player;
+  private PlayerAbilityTracker abilityTracker;
+
+  [Header("Physics And Animations")]
   [SerializeField] Collider2D myBodyCollider;
   [SerializeField] Animator fighterAnimator;
   [SerializeField] SpriteRenderer mySpriteRenderer, bashEffect;
   [SerializeField] Color bashEffectColor;
   public GameObject shieldObject;
 
+  [Header("Basic Attack")]
+  [SerializeField] GameObject[] slashAnimations;
+  [SerializeField] float comboTimer = 1f;
   [SerializeField] float attackRecoveryTime = 1f;
+  private int comboStringNumber;
+  private float currentComboTimer;
+
+  [Header("Ability One")]
   [SerializeField] float bashActiveTimer = 0.3f;
   [SerializeField] float bashCooldownTimer = 3f;
   [SerializeField] float shieldBashDistance = 15f;
   [SerializeField] float bashEffectLifetime, timeBetweenEffects;
-
-  private PlayerController player;
-  private PlayerAbilityTracker abilityTracker;
   private float bashEffectTimer;
 
   private void Start()
@@ -38,6 +47,15 @@ public class FighterController : MonoBehaviour
 
   private void Update()
   {
+    if (currentComboTimer > 0)
+    {
+      currentComboTimer -= Time.deltaTime;
+    }
+    else
+    {
+      comboStringNumber = 0;
+    }
+
     if (player.isUsingAbility)
     {
       bashEffectTimer -= Time.deltaTime;
@@ -50,13 +68,37 @@ public class FighterController : MonoBehaviour
 
   public void UseBasicAttack()
   {
-    player.myAnimator.SetTrigger("Attack");
-    FindObjectOfType<PlayerAttackController>().PlayerAttackRecovery(attackRecoveryTime);
+    if (currentComboTimer <= 0)
+    {
+      player.myAnimator.SetTrigger("Attack");
+      currentComboTimer = comboTimer;
+      comboStringNumber = 1;
+      FindObjectOfType<PlayerAttackController>().PlayerAttackRecovery(attackRecoveryTime);
+      return;
+    }
+
+    if (currentComboTimer >= 0 && comboStringNumber == 1)
+    {
+      player.myAnimator.SetTrigger("ComboOne");
+      currentComboTimer = comboTimer;
+      comboStringNumber = 2;
+      FindObjectOfType<PlayerAttackController>().PlayerAttackRecovery(attackRecoveryTime);
+      return;
+    }
+
+    if (currentComboTimer >= 0 && comboStringNumber == 2)
+    {
+      player.myAnimator.SetTrigger("Finisher");
+      currentComboTimer = 0.1f;
+      comboStringNumber = 0;
+      FindObjectOfType<PlayerAttackController>().PlayerAttackRecovery(attackRecoveryTime * 1.5f);
+      return;
+    }
   }
 
   public void UseAbilityOne()
   {
-    if(player.isUsingAbility)
+    if (player.isUsingAbility)
     {
       return;
     }
@@ -85,7 +127,7 @@ public class FighterController : MonoBehaviour
     bashEffectTimer = timeBetweenEffects;
   }
 
-  IEnumerator ShowShield (float shieldActiveTimer)
+  IEnumerator ShowShield(float shieldActiveTimer)
   {
     shieldObject.SetActive(true);
 
