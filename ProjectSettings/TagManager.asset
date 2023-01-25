@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -58,4 +60,7 @@ TagManager:
     locked: 0
   - name: Bosses
     uniqueID: 2869681971
+    locked: 0
+  - name: Projectiles
+    uniqueID: 3406189441
     locked: 0

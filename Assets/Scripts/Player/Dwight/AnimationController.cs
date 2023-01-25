@@ -22,7 +22,7 @@ public class AnimationController : MonoBehaviour
 
     public void Yeet() {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 5.23f;
+        mousePos.z = 0f;
 
         Vector3 dwightPos = Camera.main.WorldToScreenPoint(transform.position);
         mousePos.x = mousePos.x - dwightPos.x;
@@ -38,7 +38,7 @@ public class AnimationController : MonoBehaviour
         // e.g. if you're aimed upwards, you should fire the arrow at a higher position
         // than if you were aiming straight or downwards
         // something like this:
-        Vector3 instantiationPosition = transform.position + transform.right*distance;
+        Vector3 instantiationPosition = transform.position;
         // but include
         // + transform.up * (some modifier based on angle)
 
