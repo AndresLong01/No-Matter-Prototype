@@ -35,7 +35,6 @@ public class DwightController : MonoBehaviour
 
   public void UseBasicAttack()
   {
-    Debug.Log("yo");
     player.myAnimator.SetTrigger("Attack");
   }
 }
