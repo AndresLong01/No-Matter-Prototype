@@ -5,8 +5,7 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     public GameObject Arrow;
-    public float LaunchForce = 50000f;
-    [SerializeField] private float distance;
+    public float LaunchForce = 30f;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +40,8 @@ public class AnimationController : MonoBehaviour
         Vector3 instantiationPosition = transform.position;
         // but include
         // + transform.up * (some modifier based on angle)
+        // and 
+        // + transform.right * (some modifier left/right)
 
         GameObject ArrowIns = Instantiate(Arrow, instantiationPosition, instantiationAngle);
 
