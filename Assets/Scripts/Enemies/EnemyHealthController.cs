@@ -29,6 +29,7 @@ public class EnemyHealthController : MonoBehaviour
 
   public void EnemyKnockback(float xValue, float yValue, float direction)
   {
+    myRigidBody.velocity = new Vector2(0f, 0f);
     myRigidBody.velocity += new Vector2(direction * xValue, yValue);
   }
 }

@@ -95,6 +95,12 @@ public class PlayerController : MonoBehaviour
       return;
     }
 
+    if(FindObjectOfType<PlayerAttackController>().isPlayerAttacking)
+    {
+      myRigidBody.velocity = new Vector2(0f, myRigidBody.velocity.y);
+      return;
+    }
+
     //Initializing a vector to move towards given the moveInput change set by the OnMove method
     Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, myRigidBody.velocity.y);
     //Using that new vector to change the velocity of the actual rigid body in scene
