@@ -2110,6 +2110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillFractionClassSwap: 0
+  fillFractionMovementAbilityA: 0
+  fillFractionMovementAbilityB: 0
   fillFractionAbilityOneA: 0
   fillFractionAbilityOneB: 0
   fillFractionAbilityTwoA: 0
@@ -3594,8 +3596,10 @@ MonoBehaviour:
   healthSlider: {fileID: 2140978180}
   timerController: {fileID: 0}
   classSwapTimer: {fileID: 2061348134}
+  mobilityAbilityA: {fileID: 1028910541}
   abilityOneA: {fileID: 1424331309}
   abilityTwoA: {fileID: 1791451027}
+  mobilityAbilityB: {fileID: 399084727}
   abilityOneB: {fileID: 1868121309}
   abilityTwoB: {fileID: 1626595430}
   classOneGameObjects:

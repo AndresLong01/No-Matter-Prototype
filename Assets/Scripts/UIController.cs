@@ -41,8 +41,10 @@ public class UIController : MonoBehaviour
   [SerializeField] Image classSwapTimer;
 
   [Header("Class LoadoutTimers")]
+  [SerializeField] Image mobilityAbilityA;
   [SerializeField] Image abilityOneA;
   [SerializeField] Image abilityTwoA;
+  [SerializeField] Image mobilityAbilityB;
   [SerializeField] Image abilityOneB;
   [SerializeField] Image abilityTwoB;
 
@@ -69,10 +71,12 @@ public class UIController : MonoBehaviour
     classSwapTimer.fillAmount = timerController.fillFractionClassSwap;
 
     //class index 0
+    mobilityAbilityA.fillAmount = timerController.fillFractionMovementAbilityA;
     abilityOneA.fillAmount = timerController.fillFractionAbilityOneA;
     abilityTwoA.fillAmount = timerController.fillFractionAbilityTwoA;
 
     //class index 1
+    mobilityAbilityB.fillAmount = timerController.fillFractionMovementAbilityB;
     abilityOneB.fillAmount = timerController.fillFractionAbilityOneB;
     abilityTwoB.fillAmount = timerController.fillFractionAbilityTwoB;
   }
@@ -162,12 +166,22 @@ public class UIController : MonoBehaviour
   //TODO: have to run check to make sure you don't select the same class twice
   public void selectActiveClassA(int unlockedClassId)
   {
+    if(abilityTracker.activeClasses[1].name == abilityTracker.availableClasses[unlockedClassId].name)
+    {
+      return;
+    }
+
     abilityTracker.activeClasses[0] = abilityTracker.availableClasses[unlockedClassId];
     LoadCurrentClassLoadout();
   }
 
   public void selectActiveClassB(int unlockedClassId)
   {
+    if(abilityTracker.activeClasses[0].name == abilityTracker.availableClasses[unlockedClassId].name)
+    {
+      return;
+    }
+
     abilityTracker.activeClasses[1] = abilityTracker.availableClasses[unlockedClassId];
     LoadCurrentClassLoadout();
   }

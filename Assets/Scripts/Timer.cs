@@ -6,11 +6,16 @@ public class Timer : MonoBehaviour
 {
   // fill fractions calculated for the Cooldowns
   public float fillFractionClassSwap;
+  public float fillFractionMovementAbilityA, fillFractionMovementAbilityB;
   public float fillFractionAbilityOneA, fillFractionAbilityOneB;
   public float fillFractionAbilityTwoA, fillFractionAbilityTwoB;
 
   // class Swap cooldown Timer
   private float maxTimerValueClassSwap, currentTimerValueClassSwap;
+
+  // Movement Ability cooldown Timer, dependent on current class
+  private float mobilityAbilityAMaxTimer, mobilityAbilityACurrentTimer;
+  private float mobilityAbilityBMaxTimer, mobilityAbilityBCurrentTimer;
 
   //Ability one, dependent on current selected class
   private float abilityOneAMaxTimer, abilityOneACurrentTimer;
@@ -29,6 +34,23 @@ public class Timer : MonoBehaviour
   {
     maxTimerValueClassSwap = timeToSet;
     currentTimerValueClassSwap = timeToSet;
+  }
+
+  public void SetMovementAbilityTimer(int selectedClassIndex, float timeToSet)
+  {
+    //class index 0
+    if (selectedClassIndex == 0)
+    {
+      mobilityAbilityAMaxTimer = timeToSet;
+      mobilityAbilityACurrentTimer = timeToSet;
+    }
+
+    //class index 1
+    if (selectedClassIndex == 1)
+    {
+      mobilityAbilityBMaxTimer = timeToSet;
+      mobilityAbilityBCurrentTimer = timeToSet;
+    }
   }
 
   public void SetAbilityOneTimer(int selectedClassIndex, float timeToSet)
@@ -73,10 +95,12 @@ public class Timer : MonoBehaviour
       fillFractionClassSwap = currentTimerValueClassSwap / maxTimerValueClassSwap;
     }
 
-    //might need revision
     //Slot One of loadout
-    if (abilityOneACurrentTimer > 0 || abilityTwoACurrentTimer > 0)
+    if (abilityOneACurrentTimer > 0 || abilityTwoACurrentTimer > 0 || mobilityAbilityACurrentTimer > 0)
     {
+      mobilityAbilityACurrentTimer -= Time.deltaTime;
+      fillFractionMovementAbilityA = mobilityAbilityACurrentTimer / mobilityAbilityAMaxTimer;
+
       abilityOneACurrentTimer -= Time.deltaTime;
       fillFractionAbilityOneA = abilityOneACurrentTimer / abilityOneAMaxTimer;
 
@@ -85,8 +109,11 @@ public class Timer : MonoBehaviour
     }
 
     //Slot Two of Loadout
-    if (abilityOneBCurrentTimer > 0 || abilityTwoBCurrentTimer > 0)
+    if (abilityOneBCurrentTimer > 0 || abilityTwoBCurrentTimer > 0 || mobilityAbilityBCurrentTimer > 0)
     {
+      mobilityAbilityBCurrentTimer -= Time.deltaTime;
+      fillFractionMovementAbilityB = mobilityAbilityBCurrentTimer / mobilityAbilityBMaxTimer;
+
       abilityOneBCurrentTimer -= Time.deltaTime;
       fillFractionAbilityOneB= abilityOneBCurrentTimer / abilityOneBMaxTimer;
 
@@ -99,6 +126,8 @@ public class Timer : MonoBehaviour
   {
     // resets all timers
     currentTimerValueClassSwap = 0.1f;
+    mobilityAbilityACurrentTimer = 0.1f;
+    mobilityAbilityBCurrentTimer = 0.1f;
     abilityOneACurrentTimer = 0.1f;
     abilityOneBCurrentTimer = 0.1f;
     abilityTwoACurrentTimer = 0.1f;

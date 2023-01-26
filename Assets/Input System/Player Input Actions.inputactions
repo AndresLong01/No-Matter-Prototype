@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Secondary",
+                    "type": "Button",
+                    "id": "bb04b600-55c9-4f07-8851-34561e98ca08",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "dcb08b4f-0989-4b37-bc82-47e4b34973d4",
@@ -51,9 +60,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "MobilityUse",
+                    "type": "Button",
+                    "id": "3e5afbd5-22d7-4425-9e55-5db44abc57b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Ability One Use",
                     "type": "Button",
                     "id": "deea2346-94dc-47c3-b9a6-6248fb08ef50",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ability Two Use",
+                    "type": "Button",
+                    "id": "47e279fc-f085-4b7a-bb5d-0db816a72f03",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -306,11 +333,44 @@
                 {
                     "name": "",
                     "id": "1c38a3f3-8809-47a6-8fe4-1b1931469339",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Ability One Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb54876f-fd70-453d-8af9-35380084e7eb",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MobilityUse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "65bd6716-f024-444a-b9c3-ab8af0d1a2ab",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability Two Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96dda447-4064-40f0-9886-b78a0def10ff",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -36,6 +36,7 @@ public class FighterController : MonoBehaviour
   [SerializeField] float shieldBashDistance = 15f;
   [SerializeField] float bashEffectLifetime, timeBetweenEffects;
   private float bashEffectTimer;
+  public bool bashEffectActive;
 
   private void Start()
   {
@@ -56,7 +57,7 @@ public class FighterController : MonoBehaviour
       comboStringNumber = 0;
     }
 
-    if (player.isUsingAbility)
+    if (bashEffectActive)
     {
       bashEffectTimer -= Time.deltaTime;
       if (bashEffectTimer <= 0)
@@ -96,6 +97,17 @@ public class FighterController : MonoBehaviour
     }
   }
 
+  public void UseMovementAbility()
+  {
+    if (player.isUsingAbility)
+    {
+      return;
+    }
+    
+    //change this to layer business
+    abilityTracker.MovementAbilityTrigger(0.2f, 10f, false);
+  }
+
   public void UseAbilityOne()
   {
     if (player.isUsingAbility)
@@ -103,6 +115,7 @@ public class FighterController : MonoBehaviour
       return;
     }
 
+    bashEffectActive = true;
     StartCoroutine(ShowShield(bashActiveTimer));
     abilityTracker.AbilityOneTrigger(bashActiveTimer, bashCooldownTimer, true);
 
@@ -110,9 +123,18 @@ public class FighterController : MonoBehaviour
     player.myRigidBody.velocity = new Vector2(0f, 0f);
     //preventing gravity falloff
     player.myRigidBody.gravityScale = 0;
-    Debug.Log(player.myRigidBody);
-    Debug.Log(shieldBashDistance);
+    //speeding up
     player.myRigidBody.velocity += new Vector2(shieldBashDistance * player.transform.localScale.x * 1f, 0f);
+  }
+
+  public void UseAbilityTwo()
+  {
+    if (player.isUsingAbility)
+    {
+      return;
+    }
+    
+    abilityTracker.AbilityTwoTrigger(0.2f, 10f, false);
   }
 
   private void ShowBashEffects()
@@ -133,5 +155,6 @@ public class FighterController : MonoBehaviour
 
     yield return new WaitForSeconds(shieldActiveTimer);
     shieldObject.SetActive(false);
+    bashEffectActive = false;
   }
 }

@@ -19,6 +19,7 @@ public class ShieldPhysics : MonoBehaviour
   private void OnCollisionEnter2D(Collision2D other)
   {
     fighterInstance.shieldObject.SetActive(false);
+    fighterInstance.bashEffectActive = false;
     PlayerAbilityTracker.instance.StopAbilityOneEarly();
     if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss")
     {
