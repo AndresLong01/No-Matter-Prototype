@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 81e41bfda521ff54798a1a0e56e57825
+guid: 3e571d4fcd3fc5f4a9380402dea56f35
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,139 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 9_Blast_hammer_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 153
-        width: 272
-        height: 153
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 240d71c9932bfda4faecd8b2c5453761
-      internalID: 916517204
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 9_Blast_hammer_1
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 153
-        width: 272
-        height: 153
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c74922c06f5bea40a86c4f4e575bc45
-      internalID: -388109686
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 9_Blast_hammer_2
-      rect:
-        serializedVersion: 2
-        x: 544
-        y: 153
-        width: 272
-        height: 153
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c7b71cf97f47e644b03368f88f562df
-      internalID: -675381957
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 9_Blast_hammer_3
-      rect:
-        serializedVersion: 2
-        x: 816
-        y: 153
-        width: 272
-        height: 153
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9a39788a16ca52e4ea52e9c61de077ba
-      internalID: 316468499
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 9_Blast_hammer_4
-      rect:
-        serializedVersion: 2
-        x: 1088
-        y: 153
-        width: 272
-        height: 153
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b58a36b6d53dc334da0b3789d1922e5c
-      internalID: 480467478
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 9_Blast_hammer_5
-      rect:
-        serializedVersion: 2
-        x: 1360
-        y: 153
-        width: 272
-        height: 153
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6947071f8c2cf58458b60655d244cb05
-      internalID: -674093134
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 9_Blast_hammer_6
+      name: Run_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 272
-        height: 153
+        width: 170
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 187ec66280af4db4f9bd728110ebaaa9
-      internalID: -1916067129
+      spriteID: 0d900315bdbc7364b88ef1f03d7af8ea
+      internalID: 117051431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9_Blast_hammer_7
+      name: Run_1
       rect:
         serializedVersion: 2
-        x: 272
+        x: 170
         y: 0
-        width: 272
-        height: 153
+        width: 170
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -280,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3082c33ed14975b4b93c152e4f7d47fa
-      internalID: -834953311
+      spriteID: 6e86b018b019de042b841629c1e9f7ef
+      internalID: -1092972885
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9_Blast_hammer_8
+      name: Run_2
       rect:
         serializedVersion: 2
-        x: 544
+        x: 340
         y: 0
-        width: 272
-        height: 153
+        width: 170
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -301,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82b5e3895110db440a020b37ae61ce96
-      internalID: -1861667601
+      spriteID: 104407b8953594e42a923cad83184761
+      internalID: -997773290
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9_Blast_hammer_9
+      name: Run_3
       rect:
         serializedVersion: 2
-        x: 816
+        x: 510
         y: 0
-        width: 272
-        height: 153
+        width: 170
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -322,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30a3a4e08729f8644974c51fabbd9f6f
-      internalID: -1368110175
+      spriteID: ca61b60e7e5288c4a9c590bd8904547a
+      internalID: -1001656103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9_Blast_hammer_10
+      name: Run_4
       rect:
         serializedVersion: 2
-        x: 1088
+        x: 680
         y: 0
-        width: 272
-        height: 153
+        width: 170
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -343,8 +217,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdbd9dc566477f04285694725b7e12f6
-      internalID: 1472779342
+      spriteID: 9b85e991160a65044b3b3cf4a781c321
+      internalID: -2087289478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run_5
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 0
+        width: 170
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 658ca2cce018b7a49a3cd7bc78cf0570
+      internalID: 2087526754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run_6
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 0
+        width: 170
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf3e423f015f87642a9336c07a8ba624
+      internalID: -1024157551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run_7
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 0
+        width: 170
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e597babb10823b4faef9422d480ff57
+      internalID: -263052239
       vertices: []
       indices: 
       edges: []
@@ -360,17 +297,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      9_Blast_hammer_1: -388109686
-      9_Blast_hammer_4: 480467478
-      9_Blast_hammer_8: -1861667601
-      9_Blast_hammer_2: -675381957
-      9_Blast_hammer_0: 916517204
-      9_Blast_hammer_3: 316468499
-      9_Blast_hammer_5: -674093134
-      9_Blast_hammer_10: 1472779342
-      9_Blast_hammer_9: -1368110175
-      9_Blast_hammer_6: -1916067129
-      9_Blast_hammer_7: -834953311
+      Run_6: -1024157551
+      Run_2: -997773290
+      Run_1: -1092972885
+      Run_3: -1001656103
+      Run_7: -263052239
+      Run_4: -2087289478
+      Run_0: 117051431
+      Run_5: 2087526754
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

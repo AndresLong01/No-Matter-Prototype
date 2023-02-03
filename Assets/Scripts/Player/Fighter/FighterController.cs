@@ -30,6 +30,11 @@ public class FighterController : MonoBehaviour
   private int comboStringNumber;
   private float currentComboTimer;
 
+  [Header("Movement Ability")]
+  [SerializeField] float rollDistance = 15f;
+  [SerializeField] float rollActiveTimer = .4f;
+  [SerializeField] float rollCooldownTimer = 6f;
+
   [Header("Ability One")]
   [SerializeField] float bashActiveTimer = 0.3f;
   [SerializeField] float bashCooldownTimer = 3f;
@@ -37,6 +42,10 @@ public class FighterController : MonoBehaviour
   [SerializeField] float bashEffectLifetime, timeBetweenEffects;
   private float bashEffectTimer;
   public bool bashEffectActive;
+
+  [Header("Ability Two")]
+  [SerializeField] float abilityTwoActiveTimer = 2f;
+  [SerializeField] float abilityTwoCooldownTimer = 14f;
 
   private void Start()
   {
@@ -75,6 +84,7 @@ public class FighterController : MonoBehaviour
       currentComboTimer = comboTimer;
       comboStringNumber = 1;
       FindObjectOfType<PlayerAttackController>().PlayerAttackRecovery(attackRecoveryTime);
+      // player.myRigidBody.velocity += new Vector2(10f, 0f);
       return;
     }
 
@@ -105,7 +115,14 @@ public class FighterController : MonoBehaviour
     }
     
     //change this to layer business
-    abilityTracker.MovementAbilityTrigger(0.2f, 10f, false);
+    abilityTracker.MovementAbilityTrigger(rollActiveTimer, 6f, true);
+    //resetting momentum and bashing
+    player.myRigidBody.velocity = new Vector2(0f, 0f);
+    //speeding up
+    player.myAnimator.SetTrigger("Rolling");
+    StartCoroutine(RollingEffect(rollActiveTimer, mySpriteRenderer.color));
+    player.myRigidBody.velocity += new Vector2(rollDistance * player.transform.localScale.x * 1f, 0f);
+
   }
 
   public void UseAbilityOne()
@@ -134,7 +151,8 @@ public class FighterController : MonoBehaviour
       return;
     }
     
-    abilityTracker.AbilityTwoTrigger(0.2f, 10f, false);
+    abilityTracker.AbilityTwoTrigger(abilityTwoActiveTimer, abilityTwoCooldownTimer, false);
+    player.myAnimator.SetTrigger("AbilityTwo");
   }
 
   private void ShowBashEffects()
@@ -155,6 +173,17 @@ public class FighterController : MonoBehaviour
 
     yield return new WaitForSeconds(shieldActiveTimer);
     shieldObject.SetActive(false);
+    bashEffectActive = false;
+  }
+
+  IEnumerator RollingEffect(float rollDuration, Color originalColor)
+  {
+    mySpriteRenderer.color = bashEffectColor;
+    bashEffectActive = true;
+
+    yield return new WaitForSeconds(rollDuration);
+    
+    mySpriteRenderer.color = originalColor;
     bashEffectActive = false;
   }
 }
