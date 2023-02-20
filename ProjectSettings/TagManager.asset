@@ -49,6 +49,9 @@ TagManager:
   - name: Platforms
     uniqueID: 1636898905
     locked: 0
+  - name: Projectiles
+    uniqueID: 3406189441
+    locked: 0
   - name: Interactables
     uniqueID: 2581826459
     locked: 0
@@ -60,7 +63,4 @@ TagManager:
     locked: 0
   - name: Bosses
     uniqueID: 2869681971
-    locked: 0
-  - name: Projectiles
-    uniqueID: 3406189441
     locked: 0
