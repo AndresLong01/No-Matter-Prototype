@@ -73,7 +73,7 @@ public class PlayerAbilityTracker : MonoBehaviour
   }
   // ------------------------------------------------------------------- INPUT SYSTEM CALLS ---------------------------------------------------------------------------
 
-  private void OnMobilityUse(InputValue value) 
+  private void OnMobilityUse(InputValue value)
   {
     if ((selectedClassIndex == 0 && !canUseMovementA) ||
        (selectedClassIndex == 1 && !canUseMovementB))
@@ -244,13 +244,24 @@ public class PlayerAbilityTracker : MonoBehaviour
 
   IEnumerator ActivateMovementAbility(float abilityActiveDuration, bool isInvincibleDuringDuration)
   {
+    var stackedChildren = player.transform.GetComponentsInChildren<Transform>(includeInactive: true);
     if (isInvincibleDuringDuration)
     {
-      FindObjectOfType<PlayerHealthController>().StartInvulnerability(abilityActiveDuration);
+      player.gameObject.layer = LayerMask.NameToLayer("No Contact");
+      foreach (var child in stackedChildren)
+      {
+        child.gameObject.layer = LayerMask.NameToLayer("No Contact");
+      }
     }
+
     yield return new WaitForSeconds(abilityActiveDuration);
 
     player.isUsingAbility = false;
+    player.gameObject.layer = LayerMask.NameToLayer("Player");
+    foreach (var child in stackedChildren)
+    {
+      child.gameObject.layer = LayerMask.NameToLayer("Player");
+    }
     player.myRigidBody.gravityScale = initialGravity;
   }
 
