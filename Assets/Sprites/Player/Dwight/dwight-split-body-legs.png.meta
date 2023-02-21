@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fea8b805fb412884abd9a451692994f8
+guid: 22a28266ea62048f190cd836c8470cad
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -103,27 +103,15 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SPA_Player_Ginger_0
+      name: dwight-split-body-legs_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 196
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -133,18 +121,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edad02b68fc992d48b202dcb5fbd6b09
-      internalID: 787302259
+      spriteID: 0d91cc32b8e62455b8ccef61f34263eb
+      internalID: -361617285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_1
+      name: dwight-split-body-legs_1
       rect:
         serializedVersion: 2
-        x: 38
-        y: 196
+        x: 32
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -154,18 +142,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69f2f05ba41b4034e826c9bf5498a151
-      internalID: -1978850425
+      spriteID: a3294e38292884c0b8fc5fee727bfe45
+      internalID: 328977608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_2
+      name: dwight-split-body-legs_2
       rect:
         serializedVersion: 2
-        x: 76
-        y: 196
+        x: 64
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -175,18 +163,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41b1a69652d57e54cb2a4dead32d75f8
-      internalID: -770536736
+      spriteID: afe64fe4ca65f455cae45d0d52f69cd5
+      internalID: -1408574713
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_3
+      name: dwight-split-body-legs_3
       rect:
         serializedVersion: 2
-        x: 114
-        y: 196
+        x: 96
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -196,18 +184,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3344a1d4a2784a41be7ced46cc6fbfb
-      internalID: -1465793074
+      spriteID: 255683b1cb408455cb137ad25fb6394c
+      internalID: 457946703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_4
+      name: dwight-split-body-legs_4
       rect:
         serializedVersion: 2
-        x: 152
-        y: 196
+        x: 128
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -217,18 +205,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d19d5e0f4dcf154591fa1d5c558681b
-      internalID: -1493635942
+      spriteID: a48e80def205b49d2b2c064ce9ef7302
+      internalID: -1425658655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_5
+      name: dwight-split-body-legs_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 158
+        x: 160
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -238,18 +226,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d9de8d1eaebf6f4ca23906e3c89db47
-      internalID: 1564654017
+      spriteID: 5a071f2f0bd4f4272a8c01cb2927b086
+      internalID: -1072208351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_6
+      name: dwight-split-body-legs_6
       rect:
         serializedVersion: 2
-        x: 38
-        y: 158
+        x: 192
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -259,18 +247,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa8470b1a8bf89d40ad2930c23289d66
-      internalID: -501988925
+      spriteID: b6061bb06d1c94514b51ab2010315b39
+      internalID: -210839012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_7
+      name: dwight-split-body-legs_7
       rect:
         serializedVersion: 2
-        x: 76
-        y: 158
+        x: 224
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -280,18 +268,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f02617c09917a94399b12d379b98c7b
-      internalID: -1694061412
+      spriteID: bbe23d634ae774856a7eaaf31784acfa
+      internalID: -910952556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_8
+      name: dwight-split-body-legs_8
       rect:
         serializedVersion: 2
-        x: 114
-        y: 158
+        x: 256
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -301,18 +289,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 601a0e9372686e6498c8b53ab696482f
-      internalID: 684916167
+      spriteID: fc99c8c619bba49638078263a526fefa
+      internalID: 338827791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_9
+      name: dwight-split-body-legs_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 120
+        x: 288
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -322,18 +310,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0a954c453d48e84280136659619b16f
-      internalID: -125832743
+      spriteID: 84f9b8957ad8c41559dab69fbe7b6bd5
+      internalID: 1244356917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_10
+      name: dwight-split-body-legs_10
       rect:
         serializedVersion: 2
-        x: 38
-        y: 120
+        x: 320
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -343,18 +331,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d86a4afd04030c94eabab120f9ff1e75
-      internalID: 2138921120
+      spriteID: bb521f900a9cd406b8a9b0b83a9671a8
+      internalID: -1890381989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_11
+      name: dwight-split-body-legs_11
       rect:
         serializedVersion: 2
-        x: 76
-        y: 120
+        x: 352
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -364,18 +352,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b000506448da6446897804ff7359ad5
-      internalID: 1471118939
+      spriteID: 795cbf2e7a6974d11ac27733b37b9d2a
+      internalID: -2126111710
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_12
+      name: dwight-split-body-legs_12
       rect:
         serializedVersion: 2
-        x: 114
-        y: 120
+        x: 384
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -385,18 +373,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cabf215b6cdd35a4297276fb3002ce39
-      internalID: 613221923
+      spriteID: a56e7f5d1e1064344b3b135d1b9fbbea
+      internalID: -1986642762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_13
+      name: dwight-split-body-legs_13
       rect:
         serializedVersion: 2
-        x: 152
-        y: 120
+        x: 416
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -406,18 +394,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 905808a1fb94b6243a59f89c7e50850d
-      internalID: -301036662
+      spriteID: b1d1dde17de2a4200afce42255c2608e
+      internalID: 2032590205
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_14
+      name: dwight-split-body-legs_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 82
+        x: 448
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -427,18 +415,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3b979e159c44a542aa2881c61bfcb3c
-      internalID: 381393703
+      spriteID: 92ec3c92dacaa4d239743172b8216947
+      internalID: -1435946300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_15
+      name: dwight-split-body-legs_15
       rect:
         serializedVersion: 2
-        x: 38
-        y: 82
+        x: 480
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -448,18 +436,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43d35490734dc36488b49e68babf6062
-      internalID: -2103446440
+      spriteID: b907951c468734aa1a15c45faca445a1
+      internalID: 1414477964
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_16
+      name: dwight-split-body-legs_16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 44
+        x: 512
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -469,18 +457,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53e75df23282faf46b9195b199251f8e
-      internalID: -1090713035
+      spriteID: 166e4f668bf1447a3b0cf3d8242944b1
+      internalID: 1647042872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_17
+      name: dwight-split-body-legs_17
       rect:
         serializedVersion: 2
-        x: 38
-        y: 44
+        x: 544
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -490,18 +478,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1473d42e8a7be9b418e8be621c677f69
-      internalID: 504804705
+      spriteID: 528d9d2b6e67c4b919e1b61cd1881d1e
+      internalID: 1613761375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_18
+      name: dwight-split-body-legs_18
       rect:
         serializedVersion: 2
-        x: 76
-        y: 44
+        x: 576
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -511,18 +499,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e26c3088fc1507246ad0ec72620a7428
-      internalID: -1958265823
+      spriteID: dcf8ea29522aa437c93f6e54a6ab93d1
+      internalID: 108908714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_19
+      name: dwight-split-body-legs_19
       rect:
         serializedVersion: 2
-        x: 0
-        y: 6
+        x: 608
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -532,18 +520,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50aeacc7f2b8bff4ab640e3e8f86a74a
-      internalID: -903824572
+      spriteID: 20cc33e2c4ef34a1abac0ecb632c64d5
+      internalID: 1524972450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_20
+      name: dwight-split-body-legs_20
       rect:
         serializedVersion: 2
-        x: 38
-        y: 6
+        x: 640
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -553,18 +541,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db94f077d4472df4da2b11dcfc9f7345
-      internalID: -433376614
+      spriteID: 73842ed1aed3b4ad3ac35aec4d12cc4d
+      internalID: -807962782
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_21
+      name: dwight-split-body-legs_21
       rect:
         serializedVersion: 2
-        x: 76
-        y: 6
+        x: 672
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -574,18 +562,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a35024ba8a7f4f4fb618f2f92b6119a
-      internalID: 1191728887
+      spriteID: 0d0b7ea8b80024f44bf4acd4119bfbd9
+      internalID: -1465464578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_22
+      name: dwight-split-body-legs_22
       rect:
         serializedVersion: 2
-        x: 114
-        y: 6
+        x: 704
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -595,18 +583,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 440d9358a0dee1147be8665e05fbfceb
-      internalID: 161728077
+      spriteID: 5c16486b24b384c3f888e0ef6e83afea
+      internalID: 1991965230
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_23
+      name: dwight-split-body-legs_23
       rect:
         serializedVersion: 2
-        x: 152
-        y: 6
+        x: 736
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -616,18 +604,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c54633c05941b64f8698ad16a729b36
-      internalID: 1678496972
+      spriteID: 552f5ff77dea848fb8fc876b95daae58
+      internalID: -1534383656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_24
+      name: dwight-split-body-legs_24
       rect:
         serializedVersion: 2
-        x: 190
-        y: 6
+        x: 768
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -637,18 +625,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e6def0757997e34ca15af3ae3740b48
-      internalID: 775040172
+      spriteID: d135bb50f8fec431ba1bb769a1f16cbe
+      internalID: 943429067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_25
+      name: dwight-split-body-legs_25
       rect:
         serializedVersion: 2
-        x: 228
-        y: 6
+        x: 800
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -658,18 +646,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7590383f68a21c946b69c554e25846e6
-      internalID: -1920123619
+      spriteID: c060caf8e817c4a10b06105c37ef0ecb
+      internalID: 851131873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_26
+      name: dwight-split-body-legs_26
       rect:
         serializedVersion: 2
-        x: 266
-        y: 6
+        x: 832
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -679,18 +667,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 098606f39f067204daa7bbacbddc0a9e
-      internalID: 1331556739
+      spriteID: 8a68edc43903b464cbc40aba4ffc12a2
+      internalID: 396358515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_27
+      name: dwight-split-body-legs_27
       rect:
         serializedVersion: 2
-        x: 304
-        y: 6
+        x: 864
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -700,18 +688,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cf1bd5dde46e8346af2eaac276a9508
-      internalID: 1499968308
+      spriteID: c72ac6cb7e5b047f98a286d3d2cc79a9
+      internalID: -2125487293
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_28
+      name: dwight-split-body-legs_28
       rect:
         serializedVersion: 2
-        x: 342
-        y: 6
+        x: 896
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -721,8 +709,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aedf6d8d2816f994da0fd5386324097b
-      internalID: -230236321
+      spriteID: 0ae809a6f9e0f4b4ab986c291accd9f7
+      internalID: 31092180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dwight-split-body-legs_29
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8364c72dbea0a4f87b082df2d4588d62
+      internalID: -991847315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dwight-split-body-legs_30
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62d22dac595c845ba8fdda7ef8f0b049
+      internalID: 704693950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dwight-split-body-legs_31
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02d8a7ee8807949d9bf2a6e3f4620595
+      internalID: -1855179982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dwight-split-body-legs_32
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3abbf65d531ac4b6eaddb1a96a2a16ee
+      internalID: -1041332430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dwight-split-body-legs_33
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a3bfe4ca12f47c1a37cdf13c73369b
+      internalID: -1637043801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dwight-split-body-legs_34
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5ba01b673b4b4502a941100abe4a720
+      internalID: 518211864
       vertices: []
       indices: 
       edges: []
@@ -738,35 +852,41 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SPA_Player_Ginger_7: -1694061412
-      SPA_Player_Ginger_3: -1465793074
-      SPA_Player_Ginger_15: -2103446440
-      SPA_Player_Ginger_1: -1978850425
-      SPA_Player_Ginger_28: -230236321
-      SPA_Player_Ginger_19: -903824572
-      SPA_Player_Ginger_23: 1678496972
-      SPA_Player_Ginger_2: -770536736
-      SPA_Player_Ginger_0: 787302259
-      SPA_Player_Ginger_14: 381393703
-      SPA_Player_Ginger_17: 504804705
-      SPA_Player_Ginger_16: -1090713035
-      SPA_Player_Ginger_21: 1191728887
-      SPA_Player_Ginger_9: -125832743
-      SPA_Player_Ginger_6: -501988925
-      SPA_Player_Ginger_22: 161728077
-      SPA_Player_Ginger_26: 1331556739
-      SPA_Player_Ginger_24: 775040172
-      SPA_Player_Ginger_4: -1493635942
-      SPA_Player_Ginger_10: 2138921120
-      SPA_Player_Ginger_12: 613221923
-      SPA_Player_Ginger_25: -1920123619
-      SPA_Player_Ginger_18: -1958265823
-      SPA_Player_Ginger_13: -301036662
-      SPA_Player_Ginger_20: -433376614
-      SPA_Player_Ginger_8: 684916167
-      SPA_Player_Ginger_27: 1499968308
-      SPA_Player_Ginger_11: 1471118939
-      SPA_Player_Ginger_5: 1564654017
+      dwight-split-body-legs_27: -2125487293
+      dwight-split-body-legs_1: 328977608
+      dwight-split-body-legs_5: -1072208351
+      dwight-split-body-legs_18: 108908714
+      dwight-split-body-legs_12: -1986642762
+      dwight-split-body-legs_31: -1855179982
+      dwight-split-body-legs_23: -1534383656
+      dwight-split-body-legs_7: -910952556
+      dwight-split-body-legs_20: -807962782
+      dwight-split-body-legs_14: -1435946300
+      dwight-split-body-legs_11: -2126111710
+      dwight-split-body-legs_33: -1637043801
+      dwight-split-body-legs_19: 1524972450
+      dwight-split-body-legs_25: 851131873
+      dwight-split-body-legs_6: -210839012
+      dwight-split-body-legs_16: 1647042872
+      dwight-split-body-legs_28: 31092180
+      dwight-split-body-legs_22: 1991965230
+      dwight-split-body-legs_21: -1465464578
+      dwight-split-body-legs_30: 704693950
+      dwight-split-body-legs_9: 1244356917
+      dwight-split-body-legs_29: -991847315
+      dwight-split-body-legs_32: -1041332430
+      dwight-split-body-legs_0: -361617285
+      dwight-split-body-legs_10: -1890381989
+      dwight-split-body-legs_4: -1425658655
+      dwight-split-body-legs_13: 2032590205
+      dwight-split-body-legs_2: -1408574713
+      dwight-split-body-legs_15: 1414477964
+      dwight-split-body-legs_26: 396358515
+      dwight-split-body-legs_3: 457946703
+      dwight-split-body-legs_8: 338827791
+      dwight-split-body-legs_17: 1613761375
+      dwight-split-body-legs_34: 518211864
+      dwight-split-body-legs_24: 943429067
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
