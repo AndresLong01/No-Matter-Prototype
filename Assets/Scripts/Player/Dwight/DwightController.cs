@@ -35,6 +35,13 @@ public class DwightController : MonoBehaviour
 
   public void UseBasicAttack()
   {
-    player.myAnimator.SetTrigger("Attack");
+    StartCoroutine(Test());
+  }
+
+  IEnumerator Test() {
+    player.myAnimator.SetBool("IsHoldingAttack", true);
+    yield return new WaitForSeconds(1);
+    player.myAnimator.SetBool("IsHoldingAttack", false);
+    player.myAnimator.SetTrigger("ReleasedAttack");
   }
 }
