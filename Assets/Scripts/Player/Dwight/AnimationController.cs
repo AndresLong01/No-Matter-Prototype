@@ -5,32 +5,80 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     public GameObject Arrow;
+    private Animator myAnimator;
+    private LineRenderer lineRenderer;
     public float LaunchForce = 30f;
+    private bool HoldingLMB = false;
+
+    private Vector3 mousePos;
+    private Vector3 dwightPos;
+    private float angle;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        myAnimator = gameObject.GetComponent<Animator>();
+        lineRenderer = gameObject.GetComponent<LineRenderer>();
+        lineRenderer.positionCount = 2;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        HoldingLMB = Input.GetMouseButton(0);
+
+        UpdatePositions();
+
+        if (HoldingLMB)
         {
-            Debug.Log("yo!");
+            lineRenderer.enabled = true;
+
+            Vector3 lineTarget = Quaternion.AngleAxis(angle, Vector3.up) * new Vector3(mousePos.x, mousePos.y, 1f);
+
+            lineRenderer.SetPosition(0, new Vector3(transform.position.x, transform.position.y, 0f));
+            lineRenderer.SetPosition(1, lineTarget);
+        }
+        else
+        {
+            lineRenderer.enabled = false;
+        }
+
+
+        if (myAnimator.GetBool("IsHoldingAttack") && !HoldingLMB)
+        {
+            // we're in attack holding animation but aren't holding attack anymore, release the attack
+            myAnimator.SetTrigger("ReleasedAttack");
+            myAnimator.SetBool("IsHoldingAttack", false);
         }
     }
 
-    public void Yeet() {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 0f;
-
-        Vector3 dwightPos = Camera.main.WorldToScreenPoint(transform.position);
+    private void UpdatePositions() {
+        dwightPos = Camera.main.WorldToScreenPoint(transform.position);
+        mousePos = Input.mousePosition;
         mousePos.x = mousePos.x - dwightPos.x;
         mousePos.y = mousePos.y - dwightPos.y;
+        mousePos.z = 0f;
+        angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+    }
 
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+    public void EnterHoldingState()
+    {
+        myAnimator.SetBool("IsReadyToAttack", false);
+
+        if (HoldingLMB)
+        {
+            Debug.Log("EnterHoldingState() holdinglmb");
+            myAnimator.SetBool("IsHoldingAttack", true);
+        }
+        else {
+            Debug.Log("EnterHoldingState() not holdinglmb");
+            myAnimator.SetTrigger("ReleasedAttack");
+            myAnimator.SetBool("IsHoldingAttack", false);
+        }
+    }
+
+    public void Yeet()
+    {
         Quaternion instantiationAngle = Quaternion.Euler(new Vector3(0, 0, angle));
 
         // So this works, but having an issue figuring out best way to modify the
