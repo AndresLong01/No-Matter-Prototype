@@ -29,7 +29,7 @@ public class AnimationController : MonoBehaviour
 
         UpdatePositions();
 
-        if (HoldingLMB)
+        if (myAnimator.GetBool("IsHoldingAttack") && HoldingLMB)
         {
             lineRenderer.enabled = true;
 
@@ -42,7 +42,6 @@ public class AnimationController : MonoBehaviour
         {
             lineRenderer.enabled = false;
         }
-
 
         if (myAnimator.GetBool("IsHoldingAttack") && !HoldingLMB)
         {
@@ -67,11 +66,9 @@ public class AnimationController : MonoBehaviour
 
         if (HoldingLMB)
         {
-            Debug.Log("EnterHoldingState() holdinglmb");
             myAnimator.SetBool("IsHoldingAttack", true);
         }
         else {
-            Debug.Log("EnterHoldingState() not holdinglmb");
             myAnimator.SetTrigger("ReleasedAttack");
             myAnimator.SetBool("IsHoldingAttack", false);
         }
