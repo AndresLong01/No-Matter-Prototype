@@ -5,13 +5,23 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     public GameObject Arrow;
+    public GameObject ArrowSpawn;
     private Animator myAnimator;
     private LineRenderer lineRenderer;
-    public float LaunchForce = 30f;
-    private bool HoldingLMB = false;
+    public float launchForce = 30f;
+    private bool holdingLMB = false;
+    private Vector3 releasedMousePos;
 
+    // mouse position in world space
     private Vector3 mousePos;
-    private Vector3 dwightPos;
+
+    // for now, just the transform.position
+    // or, dwight's world space position
+    private Vector3 arrowSpawnPos;
+
+    // This is the angle from a flat horizontal line
+    // extending to the right from dwight rotated counter-clockwise
+    // towards the mouse position
     private float angle;
 
     // Start is called before the first frame update
@@ -25,77 +35,98 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HoldingLMB = Input.GetMouseButton(0);
+        holdingLMB = Input.GetMouseButton(0);
 
         UpdatePositions();
 
-        if (myAnimator.GetBool("IsHoldingAttack") && HoldingLMB)
+        if (myAnimator.GetBool("IsHoldingAttack") && holdingLMB)
         {
             lineRenderer.enabled = true;
 
-            Vector3 lineTarget = Quaternion.AngleAxis(angle, Vector3.up) * new Vector3(mousePos.x, mousePos.y, 1f);
+            int points = 50;
+            lineRenderer.positionCount = points;
 
-            lineRenderer.SetPosition(0, new Vector3(transform.position.x, transform.position.y, 0f));
-            lineRenderer.SetPosition(1, lineTarget);
+            Vector2 pos = arrowSpawnPos;
+            Vector2 vel = mousePos.normalized * launchForce;
+            Vector2 grav = new Vector2(Physics.gravity.x, Physics.gravity.y);
+            for (var i = 0; i < points; i++)
+            {
+                lineRenderer.SetPosition(i, new Vector3(pos.x, pos.y, 0));
+                vel += Physics2D.gravity * Time.fixedDeltaTime;
+                pos += vel * Time.fixedDeltaTime;
+
+                if (pos.y < -4f)
+                {
+                    break;
+                }
+            }
         }
         else
         {
             lineRenderer.enabled = false;
         }
 
-        if (myAnimator.GetBool("IsHoldingAttack") && !HoldingLMB)
+        if (myAnimator.GetBool("IsHoldingAttack") && !holdingLMB)
         {
             // we're in attack holding animation but aren't holding attack anymore, release the attack
+            releasedMousePos = mousePos;
             myAnimator.SetTrigger("ReleasedAttack");
             myAnimator.SetBool("IsHoldingAttack", false);
         }
     }
 
-    private void UpdatePositions() {
-        dwightPos = Camera.main.WorldToScreenPoint(transform.position);
-        mousePos = Input.mousePosition;
-        mousePos.x = mousePos.x - dwightPos.x;
-        mousePos.y = mousePos.y - dwightPos.y;
+    private float[] GetProjectileXPoints(float[] yPoints)
+    {
+        float[] xPoints = new float[yPoints.Length];
+
+        float xStart = arrowSpawnPos.x;
+        float xEnd = mousePos.x;
+
+        float interpRate = (xEnd - xStart) / yPoints.Length;
+
+        for (int i = 0; i < yPoints.Length; i++)
+        {
+            xPoints[i] = i * interpRate;
+        }
+
+        return xPoints;
+    }
+
+    private void GetProjectilePoints()
+    {
+
+    }
+
+    private void UpdatePositions()
+    {
+        arrowSpawnPos = ArrowSpawn.transform.position;
+        mousePos = arrowSpawnPos + (Camera.main.ScreenToWorldPoint(Input.mousePosition) - arrowSpawnPos) * 300f;
         mousePos.z = 0f;
-        angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        angle = Mathf.Atan2(releasedMousePos.y - arrowSpawnPos.y, releasedMousePos.x - arrowSpawnPos.x) * Mathf.Rad2Deg;
     }
 
     public void EnterHoldingState()
     {
         myAnimator.SetBool("IsReadyToAttack", false);
 
-        if (HoldingLMB)
+        if (holdingLMB)
         {
             myAnimator.SetBool("IsHoldingAttack", true);
         }
-        else {
+        else
+        {
+            releasedMousePos = mousePos;
             myAnimator.SetTrigger("ReleasedAttack");
             myAnimator.SetBool("IsHoldingAttack", false);
+            GetProjectilePoints();
         }
     }
 
     public void Yeet()
     {
         Quaternion instantiationAngle = Quaternion.Euler(new Vector3(0, 0, angle));
-
-        // So this works, but having an issue figuring out best way to modify the
-        // instantiation position upwards or downwards (if jumping) based on the angle
-        // between mouse and player
-        //
-        // e.g. if you're aimed upwards, you should fire the arrow at a higher position
-        // than if you were aiming straight or downwards
-        // something like this:
-        Vector3 instantiationPosition = transform.position;
-        // but include
-        // + transform.up * (some modifier based on angle)
-        // and 
-        // + transform.right * (some modifier left/right)
-
+        Vector3 instantiationPosition = ArrowSpawn.transform.position;
         GameObject ArrowIns = Instantiate(Arrow, instantiationPosition, instantiationAngle);
-
-        Vector3 screenPoint = Camera.main.WorldToScreenPoint(transform.position);
-        Vector3 direction = (Vector3)(Input.mousePosition-screenPoint);
-        direction.Normalize();
-        ArrowIns.GetComponent<Rigidbody2D>().AddForce(direction*LaunchForce, ForceMode2D.Impulse);
+        ArrowIns.GetComponent<Rigidbody2D>().AddForce(releasedMousePos.normalized * launchForce, ForceMode2D.Impulse);
     }
 }

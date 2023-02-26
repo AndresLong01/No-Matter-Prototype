@@ -9115,11 +9115,11 @@ Tilemap:
       e01: 0
       e02: 0
       e03: 0
-      e10: 0
+      e10: -0
       e11: 1
       e12: 0
       e13: 0
-      e20: 0
+      e20: -0
       e21: 0
       e22: 1
       e23: 0
@@ -11845,6 +11845,10 @@ PrefabInstance:
     - target: {fileID: 6690405336385410169, guid: 8d87ce9e5ed6a3745901cce3d87d0e7e, type: 3}
       propertyPath: m_Name
       value: Enemy Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 6690405336385410169, guid: 8d87ce9e5ed6a3745901cce3d87d0e7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

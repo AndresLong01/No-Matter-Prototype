@@ -16,7 +16,12 @@ public class ArrowController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // 'Look' at the current velocity vector, then rotate 90 degrees so we're orthagonal to it
+        //
+        // If our velocity vector is straight down, we have 'peaked' in our arrow path,
+        // so the arrow should be perfectly flat, ergo, 90 degree rotation
+        Vector2 rigidBodyVelocity = gameObject.GetComponent<Rigidbody2D>().velocity;
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, rigidBodyVelocity) * Quaternion.Euler(0, 0, 90);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
