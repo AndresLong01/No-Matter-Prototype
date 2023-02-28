@@ -350,7 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Arrow: {fileID: 5488435678791410834, guid: 9754034b457844b479295ec9d268cbc9, type: 3}
   ArrowSpawn: {fileID: 3122983585282116550}
-  launchForce: 5
+  launchForce: 10
 --- !u!120 &6375098040237997511
 LineRenderer:
   serializedVersion: 2

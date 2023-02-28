@@ -13,7 +13,7 @@ public class AnimationController : MonoBehaviour
     private Vector3 releasedMousePos;
 
     // mouse position in world space
-    private Vector3 mousePos;
+    private Vector2 mousePos;
 
     // for now, just the transform.position
     // or, dwight's world space position
@@ -43,20 +43,28 @@ public class AnimationController : MonoBehaviour
         {
             lineRenderer.enabled = true;
 
-            int points = 50;
+            int points = 150;
             lineRenderer.positionCount = points;
 
-            Vector2 pos = arrowSpawnPos;
-            Vector2 vel = mousePos.normalized * launchForce;
-            Vector2 grav = new Vector2(Physics.gravity.x, Physics.gravity.y);
+            Vector2 arrowPosition = arrowSpawnPos;
+            Vector2 arrowVelocity = mousePos.normalized * launchForce;
+            
             for (var i = 0; i < points; i++)
             {
-                lineRenderer.SetPosition(i, new Vector3(pos.x, pos.y, 0));
-                vel += Physics2D.gravity * Time.fixedDeltaTime;
-                pos += vel * Time.fixedDeltaTime;
+                lineRenderer.SetPosition(i, new Vector3(arrowPosition.x, arrowPosition.y, 0));
+                
+                // add gravity vector * timedelta to velocity vector
+                // or, add a frame of gravity influence to arrow velocity vector
+                arrowVelocity += Physics2D.gravity * Time.fixedDeltaTime;
 
-                if (pos.y < -4f)
+                // add velocity vector * timedelta to current position
+                // or, add a frame of calculated velocity influence to arrow position vector
+                arrowPosition += arrowVelocity * Time.fixedDeltaTime;
+
+                if (arrowPosition.y < arrowSpawnPos.y)
                 {
+                    // jank ¯\_(ツ)_/¯
+                    lineRenderer.positionCount = i;
                     break;
                 }
             }
@@ -101,7 +109,6 @@ public class AnimationController : MonoBehaviour
     {
         arrowSpawnPos = ArrowSpawn.transform.position;
         mousePos = arrowSpawnPos + (Camera.main.ScreenToWorldPoint(Input.mousePosition) - arrowSpawnPos) * 300f;
-        mousePos.z = 0f;
         angle = Mathf.Atan2(releasedMousePos.y - arrowSpawnPos.y, releasedMousePos.x - arrowSpawnPos.x) * Mathf.Rad2Deg;
     }
 
