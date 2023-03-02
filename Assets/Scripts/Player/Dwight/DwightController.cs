@@ -19,6 +19,8 @@ public class DwightController : MonoBehaviour
   
   [SerializeField] float dwightSkillOneActiveTime = 0f;
   [SerializeField] float dwightCooldownTimer = 25f;
+  public float launchForce = 10f;
+  public Animator myAnimator;
 
   private void Start()
   {

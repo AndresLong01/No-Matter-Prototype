@@ -6,9 +6,9 @@ public class AnimationController : MonoBehaviour
 {
     public GameObject Arrow;
     public GameObject ArrowSpawn;
+    public CircleCollider2D ArrowCollisionCheck;
     private Animator myAnimator;
     private LineRenderer lineRenderer;
-    public float launchForce = 30f;
     private bool holdingLMB = false;
     private Vector3 releasedMousePos;
 
@@ -24,12 +24,15 @@ public class AnimationController : MonoBehaviour
     // towards the mouse position
     private float angle;
 
+    private float launchForce;
+
     // Start is called before the first frame update
     void Start()
     {
         myAnimator = gameObject.GetComponent<Animator>();
         lineRenderer = gameObject.GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2;
+        launchForce = transform.GetComponentInParent<DwightController>().launchForce;
     }
 
     // Update is called once per frame
@@ -39,41 +42,6 @@ public class AnimationController : MonoBehaviour
 
         UpdatePositions();
 
-        if (myAnimator.GetBool("IsHoldingAttack") && holdingLMB)
-        {
-            lineRenderer.enabled = true;
-
-            int points = 150;
-            lineRenderer.positionCount = points;
-
-            Vector2 arrowPosition = arrowSpawnPos;
-            Vector2 arrowVelocity = mousePos.normalized * launchForce;
-            
-            for (var i = 0; i < points; i++)
-            {
-                lineRenderer.SetPosition(i, new Vector3(arrowPosition.x, arrowPosition.y, 0));
-                
-                // add gravity vector * timedelta to velocity vector
-                // or, add a frame of gravity influence to arrow velocity vector
-                arrowVelocity += Physics2D.gravity * Time.fixedDeltaTime;
-
-                // add velocity vector * timedelta to current position
-                // or, add a frame of calculated velocity influence to arrow position vector
-                arrowPosition += arrowVelocity * Time.fixedDeltaTime;
-
-                if (arrowPosition.y < arrowSpawnPos.y)
-                {
-                    // jank ¯\_(ツ)_/¯
-                    lineRenderer.positionCount = i;
-                    break;
-                }
-            }
-        }
-        else
-        {
-            lineRenderer.enabled = false;
-        }
-
         if (myAnimator.GetBool("IsHoldingAttack") && !holdingLMB)
         {
             // we're in attack holding animation but aren't holding attack anymore, release the attack
@@ -81,6 +49,11 @@ public class AnimationController : MonoBehaviour
             myAnimator.SetTrigger("ReleasedAttack");
             myAnimator.SetBool("IsHoldingAttack", false);
         }
+    }
+
+    public void ChildCollided(ArrowColliderController childCollider)
+    {
+        Debug.Log("Yo!");
     }
 
     private float[] GetProjectileXPoints(float[] yPoints)
@@ -108,7 +81,7 @@ public class AnimationController : MonoBehaviour
     private void UpdatePositions()
     {
         arrowSpawnPos = ArrowSpawn.transform.position;
-        mousePos = arrowSpawnPos + (Camera.main.ScreenToWorldPoint(Input.mousePosition) - arrowSpawnPos) * 300f;
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - arrowSpawnPos;
         angle = Mathf.Atan2(releasedMousePos.y - arrowSpawnPos.y, releasedMousePos.x - arrowSpawnPos.x) * Mathf.Rad2Deg;
     }
 
